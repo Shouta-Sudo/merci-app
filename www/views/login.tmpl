@@ -1,0 +1,49 @@
+<template id="login">
+	<v-ons-page id="-login-" @show="init()">
+
+        <!--ヘッダー-->
+		<page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area" :key="login_status">
+            <section>
+
+                <!-- LoginForm -->
+                <div v-if="!login_status" class="uk-container login-inner-wrap">
+                    <div class="login-inner">
+                        <h1>ログイン</h1>
+                        <div class="login-form-inner-wrap">
+
+							<div class="uk-form-controls">
+                                <v-ons-input type="email" class="uk-input uk-width-1-1" name="email" id="email" v-model="form.email" onChange="change_email()" placeholder="ログインIDをご入力ください"></v-ons-input>
+                                <div v-if="error.email" class="error">{{error.email}}</div>
+                            </div>
+
+                            <label class="uk-form-label" for="login-form-mail-check">パスワード</label>
+                            <div class="uk-form-controls">
+                                <v-ons-input type="password" class="uk-input uk-width-1-1" name="password" id="password" v-model="form.password" onChange="change_password()" placeholder="パスワードをご入力ください"></v-ons-input>
+                                <div v-if="error.password" class="error">{{error.password}}</div>
+                            </div>
+
+                        </div>
+
+                        <p class="uk-text-center forgotten">
+                            パスワードをお忘れの方は<v-ons-button class="uk-text-primary" modifier="quiet" @click="resetPassword">こちらから</a></v-ons-button>
+                        </p>
+
+                        <p class="uk-text-center login-btn-wrap">
+                            <v-ons-button class="uk-button" id="submit_btn" name="submit_btn" value="1" @click="login">ログイン</v-ons-button>
+                        </p>
+                    </div>
+                </div>
+                <!-- LoginForm end -->
+
+            </section>
+        </div><!--contents_area-->
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+        <bottom-navi></bottom-navi>
+
+	</v-ons-page>
+</template>

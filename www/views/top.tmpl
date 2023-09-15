@@ -1,0 +1,168 @@
+<template id="top">
+	<v-ons-page id="-top-" @show="init()">
+
+        <!--ヘッダー-->
+		<page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area" :key="login_status">
+            <section>
+
+				<div class="slider slider-for" id="top-slider-for"></div>
+
+				<!-- ツイートコンテンツここから -->
+				<div class="tweet-detail-com-inner sp">
+					<div class="inner">
+
+						<h2>ママ・プレママのつぶやき</h2>
+
+						<div v-if="tweet_list.length > 0" v-for="(tweet, key) in tweet_list" class="uk-flex uk-flex-middle request-detail-avatar-name-wrap2 uk-margin-bottom">
+							<div class="avatar-box">
+								<div class="request-detail-avatar">
+									<v-ons-button @click  ="login_status ? nextPage(user_profile_view, tweet.user_id) : false" modifier="quiet">
+										<img :src="get_avator_url(tweet.image_id, tweet.kanri_user_flg)" alt="profile">
+									</v-ons-button>
+								</div>
+								<div class="nickname">{{tweet.nickname}}</div>
+							</div>
+							<div class="uk-flex uk-flex-column request-comment-text uk-width-expand">
+								<p class="blackText uk-text-break tweet_list_text" @click="nextPage(tweet_details_view, tweet.id)" v-html="tweet.tweet">
+									<!-- {{tweet.tweet}} -->
+								</p>
+								<div class="reply_ctrl uk-flex uk-flex-middle uk-flex-between uk-margin-small-top">
+									<div>
+										<div class="uk-flex uk-flex-middle">
+												<v-ons-button @click  ="login_status ? nextPage(tweet_comment_view, tweet.id) : moveToLogin()"
+																			modifier="quiet"
+																			class   ="each_icon">
+													<img src="img/icon_tweet_comment.svg" alt="コメントする">
+												</v-ons-button>
+												<v-ons-button @click="nextPage(tweet_details_view, tweet.id)" modifier="quiet" class="blackText">{{tweet.comment_cnt}}</v-ons-button>
+										</div>
+									</div>
+									<div>
+										<div class="uk-flex uk-flex-middle">
+												<v-ons-button @click	 ="login_status ? put_tweet(tweet.id, 1) : moveToLogin()"
+																			:disabled="!!tweet.history"
+																			modifier ="quiet"
+																			class    ="each_icon">
+													<img :class="tweet.history ? `sp_off_{$item.id}` : `sp_on_{$item.id}`"
+																:src  ="tweet.history ? 'img/icon_tweet_like_disabled.svg' : 'img/icon_tweet_like.svg'" alt="いいね" />
+												</v-ons-button>
+												<p class="blackText" id="sp_check1_cnt_{$item.id}">{{tweet.check1}}</p>
+										</div>
+									</div>
+									<div>
+										<div class="uk-flex uk-flex-middle">
+											<v-ons-button @click="login_status ? put_tweet(tweet.id, 2) : moveToLogin()"
+																		:disabled="!!tweet.history"
+																		modifier="quiet"
+																		id="sp_check2_{$item.id}"
+																		class="each_icon">
+												<img :class="tweet.history ? `sp_off_{$item.id}` : `sp_on_{$item.id}`"
+														 :src	 ="tweet.history ? 'img/icon_tweet_handclap_disabled.svg' : 'img/icon_tweet_handclap.svg'" alt="えらい" />
+											</v-ons-button>
+											<p class="blackText" id="sp_check2_cnt_{$item.id}">{{tweet.check2}}</p>
+										</div>
+									</div>
+									<div>
+										<div class="uk-flex uk-flex-middle">
+												<v-ons-button @click="login_status ? put_tweet(tweet.id, 3) : moveToLogin()"
+																			:disabled="!!tweet.history"
+																			modifier="quiet"
+																			id="sp_check3_{$item.id}"
+																			class="each_icon">
+													<img :class="tweet.history ? `sp_off_{$item.id}` : `sp_on_{$item.id}`"
+													:src	="tweet.history ? 'img/icon_tweet_understand_disabled.svg' : 'img/icon_tweet_understand.svg'" alt="わかる" />
+												</v-ons-button>
+												<p class="blackText" id="sp_check3_cnt_{$item.id}">{{tweet.check3}}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div  class="uk-text-right" id="more_btn">
+							<!-- <v-ons-button @click="login_status ? nextPage('tweet_list') : false" modifier="quiet" class="top-tweet-more">もっと見る &gt;</v-ons-button>-->
+							<v-ons-button @click="nextPage('tweet_list')" modifier="quiet" class="top-tweet-more">もっと見る &gt;</v-ons-button>
+						</div>
+
+					</div>
+				</div>
+				<!-- ツイートコンテンツここまで -->
+
+				<div class="uk-flex uk-container top-news-reccomend-wrap">
+
+					<div class="top-news">
+
+						<!-- 週替わりコンテンツここから -->
+						<h2 class="top-news-title">週替わりコンテンツ</h2>
+
+						<div class="weekly-content">
+
+							<div class="uk-flex uk-flex-middle uk-flex-between weekly-btns weekly-btns-top">
+								<v-ons-button @click="moveToWeb('content/theme/','')" class="contents_button orangeBg_2" name="monday_btn" value="1">
+									“Monday” weekly contents<br>
+									月曜更新「今週のテーマ」はこちら
+								</v-ons-button>
+								<v-ons-button @click="moveToWeb('content/crossword/','')" class="contents_button pinkBg_2" >
+									“Tuesday” weekly contents<br>
+									火曜更新「クロスワード」はこちら
+								</v-ons-button>
+							</div>
+
+							<div class="uk-flex uk-flex-middle uk-flex-between weekly-btns">
+								<v-ons-button @click="moveToWeb('content/choice/','')" class="contents_button skyblueBg" name="wednesday_btn" value="1">
+									“Wednesday” weekly contents<br>
+									水曜更新「二択アンケート」はこちら
+								</v-ons-button>
+
+								<v-ons-button type="button" @click="moveToWeb('content/tarot/','')" class="contents_button purpleBg_2" >
+									“Thursday” weekly contents<br>
+									木曜更新「タロット占い」はこちら
+								</v-ons-button>
+							</div>
+
+							<div class="uk-flex uk-flex-middle uk-flex-between weekly-btns">
+								<v-ons-button class="contents_button yellowBg_3 blackText blackArrow" @click="moveToWeb('content/present/','')">
+									“Friday” weekly contents<br>
+									金曜更新「プレゼント企画」はこちら
+								</v-ons-button>
+							</div>
+
+						</div>
+						<!-- 週替わりコンテンツここまで -->
+
+					</div>
+
+				</div>
+
+				<div class="uk-container top-suggest-wrap">
+					<div class="top-suggest">
+
+						<h2 class="top-suggest-title">Merci, Maman!からのおすすめ！</h2>
+
+						<div class="top-suggest-post-wrap">
+							<div class="uk-flex uk-flex-stretch top-suggest-post" v-for="ad_item in advertisements">
+								<div class="top-suggest-post-thumb">
+									<img :src="ad_item.main_image.url" alt="{$item.advertisement_name}">
+								</div>
+								<div class="top-suggest-post-text">
+									<p class="top-suggest-post-title uk-text-truncate">{{ad_item.advertisement_name}}</p>
+									<p class="top-suggest-post-intro">{{ad_item.detail}}</p>
+									<div @click="openURL(ad_item.url)" class="top-suggest-post-readmore"><i class="fas fa-external-link-alt"></i> もっと知りたい！></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+            </section>
+        </div><!--contents_area-->
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+		<bottom-navi></bottom-navi>
+
+	</v-ons-page>
+</template>

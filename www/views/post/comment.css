@@ -1,0 +1,160 @@
+/*** @@@views/comment.css@@@ ***/
+
+/* ========================================================================
+   余白リセット
+ ========================================================================== */
+
+#-post-comment- p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ========================================================================
+   スライダーはみ出し分、hidden設定
+ ========================================================================== */
+
+#-post-comment- .page__content {
+    overflow-x: hidden;
+}
+
+
+/* ========================================================================
+   コンテンツ関連スタイル
+ ========================================================================== */
+
+#-post-comment- .contents_area {
+}
+
+@media (max-width: 768px) {
+  #-post-comment- .tweet-post-inner-wrap {
+    background-color: #fcfcf2;
+  }
+}
+
+#-post-comment- .tweet-post-inner {
+  background-color: #fcfcf2;
+  padding: calc(4 * 16px) 0 calc(6 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-post-comment- .tweet-post-inner {
+    padding: calc(2 * 16px) 0 calc(4 * 16px);
+  }
+}
+
+#-post-comment- .tweet-post-inner h1 {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #606060;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: calc(1 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-post-comment- .tweet-post-inner h1 {
+    font-size: 19px;
+    margin-bottom: calc(0.5 * 16px);
+  }
+    #-post-comment- .tweet-post-inner h1.uk-margin-large-top {
+        margin-top: 55px !important;
+    }
+}
+
+#-post-comment- .tweet-post-content {
+  max-width: 662px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  #-post-comment- .tweet-post-content {
+    max-width: 100%;
+  }
+}
+
+#-post-comment- .tweet-post-content h4 {
+  color: #606060;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/*#exp-list .exp-list-inner .exp-list-content h4.wanna_listen {
+    margin-bottom: 10px;
+}*/
+
+@media (max-width: 768px) {
+  #-post-comment- .tweet-post-content h4 {
+    font-size: 14px;
+  }
+}
+
+#-post-comment- .tweet-post-content h4::before {
+  display: block;
+  content: "";
+  background-image: url("../../img/icon_right_orange.png");
+  background-size: contain;
+  width: 9px;
+  height: 9px;
+  margin-right: calc(0.5 * 16px);
+}
+
+#-post-comment- .back_to_list {
+  display: inline-block;
+  color: #999;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 3px calc(0.5 * 16px);
+  border: 2px solid #999;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  #-post-comment- .back_to_list {
+    font-size: 10px;
+  }
+}
+
+#-post-comment- .tweet-post-content textarea {
+  padding: calc(1 * 16px);
+  border: solid 1px #fbc2a1;
+  border-radius: 10px;
+  margin-bottom: calc(1.5 * 16px);
+  background-color: #fff;
+}
+
+#-post-comment- .tweet-post-content .tweet-post-btn {
+  text-align: center;
+}
+
+#-post-comment- .tweet-post-content .tweet-post-btn {
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  background-color: #fbc2a1;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  line-height: 1;
+  padding: 1em 5em;
+}
+
+@media (max-width: 768px) {
+  #-post-comment- .tweet-post-content .tweet-post-btn {
+    font-size: 14px;
+    padding: 0.8em 5em;
+  }
+}
+
+#comment-dialog .button.ok_btn {
+    padding: 0.5em 5em;
+    line-height: 1;
+    font-size: 14px;
+}

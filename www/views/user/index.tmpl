@@ -1,0 +1,200 @@
+<template id="user_index">
+	<v-ons-page id="-user-index-" @show="init()" :infinite-scroll="scrolledToBottom">
+
+    <!-- ヘッダー -->
+    <page-header></page-header>
+
+    <!-- コンテンツ -->
+    <div class="contents_area">
+      <div class="uk-container mermamamates-inner-wrap">
+        <div class="mermamamates-inner">
+          <h1>{{title}}</h1>
+
+          <!-- Search -->
+          <v-ons-button @click="showModal" class="mermamamates-search-button">検索</v-ons-button>
+
+          <div class="mermamamates-conrainer">
+            <div v-if="users.length" class="uk-child-width-1-2@s" uk-grid>
+              <div class="profile-wrap" v-for="user in users" :key="user.id" @click="nextPage(user.id)">
+                <div class="uk-flex profile-inner-wrap">
+                  <div class="profile-left-block">
+                    <div class="profile-thumb-chat-wrap">
+                      <div class="profile-thumb-wrap">
+                        <div class="profile-thumb">
+                          <img class="" :src="get_avator_url(user.user_profile.image_id, user.user_detail.kanri_user_flg)">
+                        </div>
+                      </div>
+                      <!-- チャット有の場合 img を表示 -->
+                      <img v-if="user.user_profile.chat" src="img/mermamamates/icon_message.svg" alt="吹出" class="profile-thumb-chat">
+                      <!-- /チャット有の場合 img を表示 -->
+                    </div>
+                  </div>
+                  <div class="profile-right-block uk-flex uk-flex-middle">
+                    <div>
+                      <div class="profile-name">
+                        <p class="uk-flex uk-flex-middle">{{user.user_profile.nickname}}<span class="uk-text-nowrap">さん</span></p>
+                      </div>
+                      <ul class="profile-list">
+                        <li>{{get_prefecture_name(user.user_detail.prefecture_id)}}在住</li>
+                        <li>{{birthday_to_age(user.user_profile.birthday)}}</li>
+                        <li>{{get_condition(user.user_profile)}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-else style="text-align:center;">ご希望のメルママは見つかりませんでした</div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- 検索モーダル -->
+      <div v-if="modalVisible" class="modal-mermamamates">
+        <v-ons-page>
+          <div @click="modalVisible = false" style="font-size:2em;position:absolute;top:5px;right:10px;color:#606060;"><i class="fas fa-times"></i></div>
+          <h2>メルママを検索</h2>
+
+          <div class="mermamamates-form-inner-wrap">
+
+            <div class="uk-form-controls uk-grid-small uk-grid">
+              <div class="uk-width-1-2 uk-text-left">
+                <label class="uk-form-label" for="mermamamates-form-child-gender">ニックネーム</label>
+              </div>
+              <div class="uk-width-1-2">
+                <v-ons-input type="text" class="uk-input" v-model="query.nickname"></v-ons-input>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-grid-small uk-grid">
+              <div class="uk-width-1-2 uk-text-left">
+                <label class="uk-form-label" for="mermamamates-form-child-gender">居住地</label>
+              </div>
+              <div class="uk-width-1-2">
+                <v-ons-select class="uk-width-1-1" v-model="query.prefecture_id">
+                  <option v-for="item in dataset.residences" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </v-ons-select>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-grid-small uk-grid">
+              <div class="uk-width-1-2 uk-text-left">
+                <label class="uk-form-label" for="mermamamates-form-child-gender">ママの年齢</label>
+              </div>
+              <div class="uk-width-1-2">
+                <v-ons-select class="uk-width-1-1" v-model="query.mother_age">
+                  <option v-for="item in dataset.age" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </v-ons-select>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-grid-small uk-grid">
+              <div class="uk-width-1-2 uk-text-left">
+                <label class="uk-form-label" for="mermamamates-form-child-gender">現在の状況</label>
+              </div>
+              <div class="uk-width-1-2">
+                <v-ons-select class="uk-width-1-1" v-model="query.condition">
+                  <option v-for="item in dataset.current_status" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </v-ons-select>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-grid-small uk-grid">
+              <div class="uk-width-1-2 uk-text-left">
+                <label class="uk-form-label" for="mermamamates-form-child-gender">お子さまの年齢</label>
+              </div>
+              <div class="uk-width-1-2">
+                <v-ons-input type="number" class="uk-input" v-model="query['child-age-from']"></v-ons-input>
+                <v-ons-input type="number" class="uk-input" v-model="query['child-age-to']"></v-ons-input>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-grid-small uk-grid">
+              <div class="uk-width-1-2 uk-text-left">
+                <label class="uk-form-label" for="mermamamates-form-child-gender">お子さまの性別</label>
+              </div>
+              <div class="uk-width-1-2">
+                <v-ons-select class="uk-width-1-1" v-model="query['child-gender']">
+                  <option v-for="item in dataset.sex" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </v-ons-select>
+              </div>
+            </div>
+<!--
+            <div class="uk-form-controls uk-grid-small uk-margin-medium-top uk-margin-medium-bottom uk-grid">
+              <div>
+                <label class="uk-form-label" for="mermamamates-form-taste">好きなテイスト</label>
+              </div>
+              <div id="mermamamates-taste" class="uk-flex uk-flex-center uk-flex-middle uk-flex-between uk-flex-wrap mermamamates-taste-btns">
+                <label v-for="item in dataset.taste">
+                  <input class="uk-checkbox" id="'taste' + item.value" type="checkbox" v-model="query.taste" :value="item.value">
+                  <div :class="item.css">{{item.text}}</div>
+                </label>
+              </div>
+            </div>
+-->
+            <div class="uk-form-controls uk-margin-medium-bottom">
+              <div class="uk-text-left mb10">
+                <label class="uk-form-label" for="mermamamates-form-mama-interests">ママの興味・関心</label>
+              </div>
+              <div>
+                <v-ons-select class="uk-width-1-1" v-model="query.mother_interest">
+                  <option v-for="item in dataset.interest" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </v-ons-select>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-margin-medium-bottom">
+              <div class="uk-text-left mb10">
+                <label class="uk-form-label" for="mermamamates-form-child-interests">お子さまの興味・関心</label>
+              </div>
+              <div>
+                <v-ons-select class="uk-width-1-1" v-model="query.child_interest">
+                  <option v-for="item in dataset.child_interest" :value="item.value">
+                    {{ item.text }}
+                  </option>
+                </v-ons-select>
+              </div>
+            </div>
+
+            <div class="uk-form-controls uk-margin-medium-bottom">
+              <div class="uk-text-left mb10">
+                <label class="uk-form-label" for="mermamamates-form-child-interests">ママやお子さまが経験したこと</label>
+              </div>
+              <div>
+                <v-ons-select class="uk-width-1-1" v-model="query.experience">
+                          <option v-for="item in dataset.experience" :value="item.value">
+                            {{ item.text }}
+                          </option>
+                        </v-ons-select>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mermamamates-form-submit uk-flex uk-flex-middle uk-flex-center uk-margin-large-top uk-margin-medium-bottom">
+            <v-ons-button class="uk-button-danger" @click="search">検索</v-ons-button>
+          </div>
+
+        </v-ons-page>
+      </div>
+
+    </div>
+    <!--contents_area-->
+
+    <!-- フッター -->
+    <bottom-navi></bottom-navi>
+    
+  </v-ons-page>
+</template>

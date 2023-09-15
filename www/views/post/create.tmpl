@@ -1,0 +1,66 @@
+<template id="create">
+    <v-ons-page id="-post-create-" @show="init()">
+
+        <!-- ヘッダー -->
+        <page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area">
+
+            <div class="uk-container tweet-post-inner-wrap">
+
+                <div class="tweet-post-inner">
+
+                    <div class="tweet-post-content">
+
+                        <h1>ツイート</h1>
+
+                        <h4 class="uk-flex uk-flex-middle">つぶやく</h4>
+
+                        <div class="tweet-post-form">
+                            <div class="uk-flex uk-flex-middle uk-flex-wrap tweet-post-form-row">
+                                <textarea class="textarea uk-width-1-1" v-model="form.tweet_contents" :placeholder="page.fieldInfo.tweet_contents.placeholder" rows="5" id="text-input">
+                                </textarea>
+                                <p class="uk-width-1-1 mt10 error orangeText" v-if="error.tweet_contentse">{{error.tweet_contents}}</p>
+                                <div class="uk-width-1-1 uk-text-center uk-margin-small-top">
+                                    <v-ons-button @click="showConfirmation()" class="tweet-post-btn uk-text-nowrap" id="check_contents">つぶやく</v-ons-button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!--contents_area-->
+
+        <template id="tweet-dialog.html">
+            <ons-dialog id="tweet-dialog" cancelable>
+                <div class="p10 uk-text-center">
+                <p class="mb20 uk-text-center">つぶやきを投稿します。</p>
+                <p class="mb10">
+                    <v-ons-button @click="canceltweet()" modifier="quiet" class="text-grey fsS">キャンセル</v-ons-button>
+                </p>
+                <p>
+                    <v-ons-button @click="tweet()" class="ok_btn">OK</v-ons-button>
+                </p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <template id="tweet-complete-dialog.html">
+            <ons-dialog id="tweet-complete-dialog" cancelable>
+                <div class="p10">
+                    <p class="uk-text-center">投稿しました。</p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+        <bottom-navi></bottom-navi>
+
+    </v-ons-page>
+</template>

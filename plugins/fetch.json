@@ -1,0 +1,10 @@
+{
+  "cordova-plugin-badge": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-badge"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "870437935337",
+    "project_id": "merci-maman",
+    "storage_bucket": "merci-maman.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870437935337:android:a848e36037a4da83c23878",
+        "android_client_info": {
+          "package_name": "jp.co.apicetec.merciamanProd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870437935337-reaiat160b92rcjk8b0hase6flobs777.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZCVrLiJcZ2lM9SdxjID_E5O1tKNdzVZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870437935337-reaiat160b92rcjk8b0hase6flobs777.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "870437935337-4ip26ecu67tjphtdjdrchsgdufc6a2du.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.co.apicetec.mercimaman"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870437935337:android:6c9eda57a712b70fc23878",
+        "android_client_info": {
+          "package_name": "jp.co.apicetec.mercimaman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870437935337-reaiat160b92rcjk8b0hase6flobs777.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZCVrLiJcZ2lM9SdxjID_E5O1tKNdzVZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870437935337-reaiat160b92rcjk8b0hase6flobs777.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "870437935337-4ip26ecu67tjphtdjdrchsgdufc6a2du.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.co.apicetec.mercimaman"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

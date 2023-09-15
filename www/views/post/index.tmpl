@@ -1,0 +1,118 @@
+<template id="index">
+    <v-ons-page id="-post-index-" @show="init()" @hide="hide()" :infinite-scroll="scrolledToBottom">
+
+        <!-- ヘッダー -->
+        <page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area">
+
+            <div class="request-detail-inner-wrap">
+
+                <div class="request-detail-com-inner uk-container">
+
+                    <div class="inner">
+
+                        <h1>{{title}}</h1>
+
+                        <div class="request-detail-inner-content">
+
+                            <div v-if="tweet_list.length > 0" v-for="(item, key) in tweet_list" class="uk-flex uk-flex-middle request-detail-avatar-name-wrap2 uk-margin-bottom">
+                                <div class="avatar-box">
+                                    <div class="request-detail-avatar">
+                                        <img @click="login_status ? moveToProfile(item.user_id) : false" :src="get_avator_url(item.image_id, item.kanri_user_flg)" alt="">
+                                    </div>
+                                    <div class="nickname">{{item.nickname}}</div>
+                                </div>
+                                <div class="uk-flex uk-flex-column request-comment-text uk-width-expand">
+
+                                    <p @click="moveToDetail(item.id)" class="blackText uk-text-break tweet_list_text">{{item.tweet}}</p>
+
+                                    <div class="reply_ctrl uk-flex uk-flex-middle uk-flex-between uk-margin-small-top">
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <span class="each_icon" @click="login_status ? moveToComment(item.id):  moveToLogin()">
+                                                    <img src="img/icon_tweet_comment.svg" alt="コメントする">
+                                                </span>
+                                                <span class="" :id='`comment_${item.id}`' @click="moveToDetail(item.id)">
+                                                    {{item.comment_cnt}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <p v-if="login_status">
+                                                	<span class="each_icon" @click="plusOne(item.id, 1, item.history); $set(tweet_list[key], 'history', 1);">
+														<img :src="item.history==0 ? 'img/icon_tweet_like.svg' : 'img/icon_tweet_like_disabled.svg'" :id='`sp_on_1_${item.id}`' alt="いいね">
+                                                	</span>
+                                                </p>
+                                                <p v-else>
+                                                	<span class="each_icon" @click="moveToLogin()">
+														<img :src="item.history==0 ? 'img/icon_tweet_like.svg' : 'img/icon_tweet_like_disabled.svg'" :id='`sp_on_1_${item.id}`' alt="いいね">
+                                                	</span>
+                                                </p>
+
+                                                <span class="blackText" :id='`sp_check1_cnt_${item.id}`'>
+                                                    {{item.check1}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                            	<p v-if="login_status">
+                                                	<span class="each_icon" @click="plusOne(item.id, 2, item.history); $set(tweet_list[key], 'history', 1);">
+                                                      <img :src="item.history==0 ? 'img/icon_tweet_handclap.svg' : 'img/icon_tweet_handclap_disabled.svg'" :id='`sp_on_2_${item.id}`' alt="えらい">
+                                                	</span>
+                                                 </p>
+                                                <p v-else>
+                                                	<span class="each_icon" @click="moveToLogin()">
+                                                    	<img :src="item.history==0 ? 'img/icon_tweet_handclap.svg' : 'img/icon_tweet_handclap_disabled.svg'" :id='`sp_on_2_${item.id}`' alt="えらい">
+                                                	</span>
+                                                </p>
+
+                                                <span class="blackText" :id='`sp_check2_cnt_${item.id}`'>
+                                                    {{item.check2}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                            	<p v-if="login_status">
+                                                	<span class="each_icon" @click="plusOne(item.id, 3, item.history); $set(tweet_list[key], 'history', 1);">
+                                                    	<img :src="item.history==0 ? 'img/icon_tweet_understand.svg' : 'img/icon_tweet_understand_disabled.svg'" :id='`sp_on_3_${item.id}`' alt="わかる">
+                                                	</span>
+                                                 </p>
+                                                <p v-else>
+                                                	<span class="each_icon" @click="moveToLogin()">
+                                                    	<img :src="item.history==0 ? 'img/icon_tweet_understand.svg' : 'img/icon_tweet_understand_disabled.svg'" :id='`sp_on_3_${item.id}`' alt="わかる">
+                                                	</span>
+                                                </p>
+
+                                                <span class="blackText" :id='`sp_check3_cnt_${item.id}`'>
+                                                    {{item.check3}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-if="tweet_list.length == 0" id="no_tweet" class="uk-text-center uk-margin-bottom">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!--contents_area-->
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+        <bottom-navi></bottom-navi>
+
+    </v-ons-page>
+</template>

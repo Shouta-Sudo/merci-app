@@ -1,0 +1,254 @@
+<template id="re_details">
+    <v-ons-page id="-post-re_details-" @show="init()">
+
+        <!-- ヘッダー -->
+        <page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area">
+
+            <div class="uk-container tweet-detail-inner-wrap">
+
+                <div class="tweet-detail-inner">
+
+                    <div class="tweet-detail-content">
+
+                        <h1>つぶやきコメント</h1>
+
+                        <!-- 大元のツイート枠 -->
+
+                        <div class="uk-flex uk-flex-column uk-margin-top uk-margin-medium-bottom">
+
+                            <div class="uk-flex uk-flex-middle tweet-detail-avatar-name-wrap uk-margin-bottom">
+                                <div class="tweet-detail-avatar-wrap">
+                                    <div class="tweet-detail-thumb-wrap">
+                                        <div class="avatar">
+                                            <img @click="login_status ? moveToProfile(view.user_id):  moveToLogin()" :src="get_avator_url(view.image_id, view.kanri_user_flg)" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post_info">
+                                    <p class="name">{{view.nickname}}</p>
+                                    <p class="uk-margin-remove fsS">{{dateFormat(view.created_at)}}</p>
+                                </div>
+                            </div>
+
+                            <div class="tweet_txt uk-text-break">
+                                <p @click="moveToDetails(view.tweet_id)" class="uk-text-break">{{view.tweet}}</p>
+                            </div>
+
+                            <div class="reply_ctrl uk-flex uk-flex-between">
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img @click="login_status ? moveToComment(view.tweet_id):  moveToLogin()" src="img/icon_tweet_comment.svg" alt="コメント">
+                                        </span>
+                                        <span @click="moveToDetails(view.tweet_id)" class="">
+                                            コメント {{view.comment_cnt}}件
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img src="img/icon_tweet_like.svg" alt="いいね">
+                                        </span>
+                                        <span class="">
+                                            いいね {{view.check1}}人
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img src="img/icon_tweet_handclap.svg" alt="えらい">
+                                        </span>
+                                        <span class="">
+                                            えらい {{view.check2}}人
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img src="img/icon_tweet_understand.svg" alt="わかる">
+                                        </span>
+                                        <span class="">
+                                            わかる {{view.check3}}人
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!--　reply_ctrl -->
+
+                        </div>
+
+                        <!-- 大元のツイート枠 ここまで -->
+
+                        <!-- 親枠 -->
+
+                        <div class="comment_area tree_parent has_tree">
+
+                            <div v-if="view.parent_list.length > 0" v-for="(item, index) in view.parent_list" class="uk-flex uk-flex-top tweet-detail-avatar-name-wrap2">
+
+                                <div class="avatar">
+                                    <img @click="login_status ? moveToProfile(item.user_id):  moveToLogin()" :src="get_avator_url(item.image_id, item.kanri_user_flg)" alt="">
+                                </div>
+
+                                <div class="uk-flex uk-flex-column tweet-comment-text">
+                                    <div class="uk-flex uk-flex-middle">
+                                        <div class="uk-text-bold mr10px">{{item.nickname}}</div>
+                                        <div class="fsS">{{dateFormat(item.created_at)}}</div>
+                                    </div>
+                                    <p @click="moveToReDetails(item.id)" class="uk-margin-remove-bottom" class="blackText uk-text-break">
+                                        {{item.tweet}}
+                                    </p>
+
+                                    <div class="reply_ctrl uk-flex uk-flex-between">
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <span class="each_icon">
+                                                    <img @click="login_status ? moveToComment(item.id):  moveToLogin()" src="img/icon_tweet_comment.svg" alt="コメントする">
+                                                </span>
+                                                <span @click="moveToReDetails(item.id)">{{item.comment_cnt}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- 親枠　ここまで -->
+
+                        <!-- カレントコメント枠 -->
+
+                        <div v-bind:class="[(view.current_comment_cnt > 0) ? 'comment_area tree_parent has_tree': 'comment_area tree_parent']">
+
+                            <div class="uk-flex uk-flex-top tweet-detail-avatar-name-wrap2">
+
+                                <div class="avatar">
+                                    <img @click="login_status ? moveToProfile(view.current_user_id):  moveToLogin()" :src="get_avator_url(view.current_image_id, view.kanri_user_flg)" alt="">
+                                </div>
+
+                                <div class="uk-flex uk-flex-column tweet-comment-text current uk-width-expand">
+                                    <div class="uk-flex uk-flex-middle">
+                                        <div class="uk-text-bold mr10px">{{view.current_nickname}}</div>
+                                        <div class="fsS">{{dateFormat(view.current_created_at)}}</div>
+                                    </div>
+                                    <p @click="moveToReDetails(view.current_id)" class="uk-margin-remove-bottom current_comment_txt uk-text-break pt20">
+                                        {{view.current_tweet}}
+                                    </p>
+
+                                    <div class="reply_ctrl uk-flex uk-flex-between uk-margin-small-top">
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <span class="each_icon">
+                                                    <img @click="login_status ? moveToComment(view.current_id):  moveToLogin()" src="img/icon_tweet_comment.svg" alt="コメントする">
+                                                </span>
+                                                <span @click="moveToReDetails(view.current_id)">{{view.current_comment_cnt}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="user-report uk-margin-auto-left uk-margin-right" @click="showConfirmation()"><img src="img/icon_report.svg" alt="報告"></p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!--　カレントコメント枠　ここまで -->
+
+                        <hr>
+
+                        <!-- 子コメント枠 -->
+
+
+
+                        <div v-if="view.child_list.length > 0" v-for="(item, index) in view.child_list" :key="index">
+
+<div v-bind:class="[(index < (view.child_list.length -1) && view.child_list[index+1].parent_id == item.id) ? 'child_com tree_parent has_tree': 'child_com tree_parent']">
+
+                                <div class="uk-flex uk-flex-top tweet-detail-avatar-name-wrap2">
+                                    <div class="avatar">
+                                        <img @click="login_status ? moveToProfile(item.user_id):  moveToLogin()" :src="get_avator_url(item.image_id, item.kanri_user_flg)" alt="">
+                                    </div>
+
+                                    <div class="uk-flex uk-flex-column tweet-comment-text">
+                                        <div class="uk-flex uk-flex-middle">
+                                            <div class="uk-text-bold mr10px">{{item.nickname}}</div>
+                                            <div class="fsS">{{dateFormat(item.created_at)}}</div>
+                                        </div>
+                                        <p @click="moveToReDetails(item.id)" class="uk-margin-remove-bottom uk-text-break">
+                                            {{item.tweet}}
+                                        </p>
+
+                                        <div class="reply_ctrl uk-flex uk-flex-between uk-margin-small-top">
+                                            <div>
+                                                <div class="uk-flex uk-flex-middle">
+                                                    <span class="each_icon">
+                                                        <img @click="login_status ? moveToComment(item.id):  moveToLogin()" src="img/icon_tweet_comment.svg" alt="コメントする">
+                                                    </span>
+                                                    <span @click="moveToReDetails(item.id)">{{item.comment_cnt}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+</div>
+
+	                		<div v-if="index < (view.child_list.length -1)">
+								<div v-if="view.child_list[index+1].parent_id == view.current_id">
+	                          		<hr>
+								</div>
+	                        </div>
+
+                        </div>
+
+                        <!--　子コメント枠　ここまで -->
+
+                        <div class="uk-text-center uk-margin-top">
+                            <v-ons-button @click="moveToPrev()" class="uk-button item-redetail-btn uk-button-primary">つぶやきに戻る</v-ons-button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!--contents_area-->
+
+        <template id="report-dialog-redetail.html">
+            <ons-dialog id="report-dialog-redetail" cancelable>
+                <div class="p10 uk-text-center">
+                <p class="mb20 uk-text-center">このコンテンツを運営者に報告します。</p>
+                <p>
+                    <v-ons-button @click="report_contents()" class="ok_btn">OK</v-ons-button>
+                </p>
+                <p class="mb10">
+                    <v-ons-button @click="cancel_report()" modifier="quiet" class="text-grey fsS">キャンセル</v-ons-button>
+                </p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <template id="report-complete-dialog-redetail.html">
+            <ons-dialog id="report-complete-dialog-redetail" cancelable>
+                <div class="p10">
+                    <p class="uk-text-center">運営者に報告しました。</p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+        <bottom-navi></bottom-navi>
+
+    </v-ons-page>
+</template>

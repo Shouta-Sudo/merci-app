@@ -1,0 +1,369 @@
+/*** @@@views/message.css@@@ ***/
+
+/* ========================================================================
+   余白リセット
+ ========================================================================== */
+
+#-user_message- p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ========================================================================
+   スライダーはみ出し分、hidden設定
+ ========================================================================== */
+
+#-user_message- .page__content {
+    overflow-x: hidden;
+}
+
+#-user_message- .mermamamessage-inner-wrap {
+    margin-bottom: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+    #-user_message- .mermamamessage-inner-wrap {
+        background-color: #fcfcf2;
+        margin-bottom: 0;
+    }
+}
+
+#-user_message- .mermamamessage-inner {
+    background-color: #fcfcf2;
+    padding: calc(4 * 16px) 0 calc(3 * 16px);
+}
+
+#-user_message- .mermamamessage-inner h1,
+#-user_message- .mermamamessage-inner h2 {
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+#-user_message- .mermamamessage-inner h1 {
+    color: #606060;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: calc(3 * 16px);
+}
+
+#-user_message- .mermamamessage-inner h2 {
+    color: #aaa;
+    font-size: 18px;
+    /* font-weight: bold; */
+    text-align: left;
+    /* letter-spacing: 0.1em; */
+    margin-bottom: calc(1 * 16px);
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap {
+    max-width: 420px;
+    margin: 0 auto calc(3 * 16px);
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap p {
+    /* font-size: 15px;
+    line-height: 1.5; */
+    margin-bottom: calc(.5 * 16px);
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap p.top {
+    margin-bottom: calc(3 * 16px);
+}
+
+/*message-area*/
+#-user_message- .chat-message-area {
+    margin: 0 auto;
+    width: 100%;
+    height: 500px;
+    overflow-x: auto;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 20px 20px;
+}
+#-user_message- .chat-message-set {
+    width: 80%;
+}
+#-user_message- .chat-message-set + .chat-message-set {
+    margin-top: 40px;
+}
+#-user_message- .chat-message-set.chat-message-right {
+    margin-left: auto;
+}
+#-user_message- .chat-message-set.chat-message-left {
+    margin-right: auto;
+}
+/* message-head */
+#-user_message- .chat-message-head {
+    text-align: left;
+    font-size:12px;
+}
+#-user_message- .chat-message-set.chat-message-right .chat-message-head {
+    text-align: right;
+}
+#-user_message- .chat-message-head span {
+    display: inline-block;
+}
+#-user_message- .chat-message-head span + span {
+    margin-left: .5em;
+}
+#-user_message- .chat-message-head span.date {
+    font-size: 12px;
+}
+/* message-box */
+#-user_message- .chat-message-box {
+    /* background: #bbb; */
+    width: 100%;
+    border-radius: 5px ;
+    padding: 14px 19px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    /* min-height: 68px; */
+}
+#-user_message- .msg-img-area {
+    margin-top: 5px;
+    width: 100%;
+}
+#-user_message- .msg-img-area > img {
+    border-radius: 8px;
+    overflow: hidden;
+}
+#-user_message- .chat-message-set.chat-message-left .chat-message-box,
+#-user_message- .chat-message-set.chat-message-right .chat-message-box {
+    border-radius: 15px;
+    position: relative;
+    display: inline-block;
+}
+#-user_message- .chat-message-set.chat-message-left .chat-message-box:after,
+#-user_message- .chat-message-set.chat-message-right .chat-message-box:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+}
+#-user_message- .chat-message-set.chat-message-left .chat-message-box {
+    /* width: calc(100% - 12px); */
+    /* width: 100%; */
+    /* background: #bbb; */
+    background: #fbf6dc;
+    margin-left: 5px;
+}
+#-user_message- .chat-message-set.chat-message-left .chat-message-box:after {
+    bottom: 25px;
+    left: -19px;
+    border: 6px solid transparent;
+    /* border-right: 18px solid #bbb; */
+    border-right: 18px solid #fbf6dc;
+    -webkit-transform: rotate(16deg);
+    transform: rotate(16deg);
+}
+#-user_message- .chat-message-set.chat-message-right .chat-message-box {
+    /* background: #eaeaea; */
+    background: #f2c3a6;
+}
+#-user_message- .chat-message-set.chat-message-right .chat-message-box:after {
+    top: 6px;
+    right: -19px;
+    border: 6px solid transparent;
+    /* border-left: 18px solid #eaeaea; */
+    border-left: 18px solid #f2c3a6;
+    -webkit-transform: rotate(-14deg);
+    transform: rotate(-14deg);
+}
+#-user_message- .chat-message-box p {
+    font-size: 12px;
+    text-align: left;
+    line-height: 1.4;
+    margin-bottom: 0!important;
+}
+#-user_message- .chat-message-box p + p {
+    margin-top: 1em;
+}
+#-user_message- .chat-message-box.display-set {
+    margin-bottom: 10px;
+}
+#-user_message- .chat-message-box.display-set + p.display {
+    text-align: right;
+    margin-bottom: 30px;
+}
+#-user_message- .chat-read {
+    color: #f00;
+}
+#-user_message- .chat-message-set.chat-message-left .chat-img {
+    margin-right: 1em;
+}
+#-user_message- .chat-message-set.chat-message-right .chat-img {
+    margin-left: 1em;
+}
+#-user_message- .chat-message-set.chat-message-left .chat-img img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+}
+#-user_message- .chat-message-set .uk-flex {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+#-user_message- .host {
+    color: #fff;
+}
+
+#-user_message- .chat-message-left .host {
+    color: #606060;
+}
+
+@media (max-width: 768px) {
+    #-user_message- .chat-message-set {
+        width: 100%;
+    }
+    #-user_message- .chat-message-box {
+        width: 78%;
+    }
+    #-user_message- .chat-message-set.chat-message-right .chat-message-box {
+        width: 100%;
+    }
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls p {
+    font-size: 13px;
+    color: #ff5500;
+    margin: 0;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls p.mermamamessage-form-feeValue,
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls p.mermamamessage-form-totalValue {
+    font-size: 16px;
+    color: #606060;
+    margin: 0;
+    padding-top: 8px;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls p span {
+    font-size: 13px;
+    margin-right: calc(0.25 * 16px);
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls {
+    font-size: 14px;
+    margin-bottom: calc(1.5 * 16px);
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls input,
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls textarea,
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls select {
+    margin-bottom: calc(0.25 * 16px);
+    /* border-color: #606060; */
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap .uk-form-controls textarea {
+    width: 100%;
+    padding: 4px 10px;
+    color: #666;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-danger,
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-primary,
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-default {
+  font-size: 20px;
+  border-radius: 14px;
+  padding: calc(0.5 * 16px) calc(1 * 16px);
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-danger {
+  color: #fff;
+  background-color: #ff5500;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-primary {
+  color: #fff;
+  background-color: #999;
+}
+
+#-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-default {
+  color: #999;
+  background-color: #fff;
+  border: 1px solid #999;
+}
+
+@media (max-width: 768px) {
+  #-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-danger,
+  #-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-primary,
+  #-user_message- .mermamamessage-inner .mermamamessage-form-submit .uk-button-default {
+    font-size: 20px;
+    border-radius: 10px;
+    padding: calc(0.25 * 16px) calc(3 * 16px);
+  }
+  #-user_message- .mermamamessage-inner .mermamamessage-form-inner-wrap label {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+}
+
+/* chat ------------------- */
+
+/*chat-toukou-area*/
+#-user_message- .chat-toukou-area {
+    margin-top: 20px;
+}
+#-user_message- .chat-toukou-area .btn .button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: auto;
+    min-width: 5em;
+    padding: 1em 5em;
+    margin: 1em auto 0;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 1;
+  color: #fff;
+  background-color: #ff5500;
+}
+#-user_message- .select_image_icon{
+    color: #f2c3a6;
+    font-size: 1.2em;
+}
+#-user_message- .select_image {
+    margin: 0 4px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    border: 1px solid #d0d0d0;
+    background-color: #fff;
+}
+
+#-user_message- .back_to_list {
+  display: inline-block;
+  color: #999;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 3px calc(0.5 * 16px);
+  border: 2px solid #999;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  #-user_message- .back_to_list {
+    font-size: 10px;
+  }
+}

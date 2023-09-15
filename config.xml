@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- <widget xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="jp.co.apicetec.merciamanProd" version="1.0.1"> -->
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="jp.co.apicetec.mercimaman" version="1.0.1">
+  <name>Merci Maman</name>
+  <description>Made with Monaca (http://monaca.mobi)</description>
+  <author/>
+  <content src="index.html"/>
+  <preference name="loglevel" value="DEBUG"/>
+  <preference name="AndroidLaunchMode" value="singleTop"/>
+  <preference name="BackgroundColor" value="0xffffffff"/>
+  <preference name="ErrorUrl" value=""/>
+  <preference name="monaca:WebViewEngine" value="default"/>
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="monaca:DisableCookie" value="false"/>
+  <preference name="AllowInlineMediaPlayback" value="false"/>
+  <preference name="BackupWebStorage" value="cloud"/>
+  <preference name="FadeSplashScreenDuration" value="250"/>
+  <preference name="KeyboardDisplayRequiresUserAction" value="true"/>
+  <preference name="MediaTypesRequiringUserActionForPlayback" value="false"/>
+  <preference name="SuppressesIncrementalRendering" value="false"/>
+  <preference name="TopActivityIndicator" value="gray"/>
+  <preference name="GapBetweenPages" value="0"/>
+  <preference name="PageLength" value="0"/>
+  <preference name="PaginationBreakingMode" value="page"/>
+  <preference name="PaginationMode" value="unpaginated"/>
+  <feature name="App">
+    <param name="android-package" value="org.apache.cordova.App"/>
+  </feature>
+  <feature name="LocalStorage">
+    <param name="ios-package" value="CDVLocalStorage"/>
+  </feature>
+  <platform name="ios">
+    <preference name="orientation" value="portrait"/>
+    <icon src="/res/ios/icon/icon-40@2x.png" width="80" height="80"/>
+    <icon src="/res/ios/icon/icon-20.png" width="20" height="20"/>
+    <icon src="/res/ios/icon/icon-20@2x.png" width="40" height="40"/>
+    <icon src="/res/ios/icon/icon-50.png" width="50" height="50"/>
+    <icon src="/res/ios/icon/icon-50@2x.png" width="100" height="100"/>
+    <icon src="/res/ios/icon/icon-small.png" width="29" height="29"/>
+    <icon src="/res/ios/icon/icon-small@2x.png" width="58" height="58"/>
+    <icon src="/res/ios/icon/icon-small@3x.png" width="87" height="87"/>
+    <icon src="/res/ios/icon/icon-83.5@2x~ipad.png" width="167" height="167"/>
+    <preference name="scheme" value="monaca-app"/>
+    <preference name="hostname" value="localhost"/>
+    <!-- <splash src="/res/ios/screen/Default@2x~universal~anyany.png"/> -->
+    <!-- <splash src="/res/ios/screen/Default@2x~universal~anyany.png"/> -->
+    <icon src="/res/ios/icon/icon.png" width="57" height="57"/>
+    <icon src="/res/ios/icon/icon@2x.png" width="114" height="114"/>
+    <icon src="/res/ios/icon/icon-72.png" width="72" height="72"/>
+    <icon src="/res/ios/icon/icon-72@2x.png" width="144" height="144"/>
+    <icon src="/res/ios/icon/icon-60.png" width="60" height="60"/>
+    <icon src="/res/ios/icon/icon-60@2x.png" width="120" height="120"/>
+    <icon src="/res/ios/icon/icon-60@3x.png" width="180" height="180"/>
+    <icon src="/res/ios/icon/icon-76.png" width="76" height="76"/>
+    <icon src="/res/ios/icon/icon-76@2x.png" width="152" height="152"/>
+    <icon src="/res/ios/icon/icon-40.png" width="40" height="40"/>
+    <icon src="/res/ios/icon/icon-1024.png" width="1024" height="1024"/>
+    <config-file platform="ios" parent="CFBundleLocalizations" target="*-Info.plist">
+      <array>
+        <string>ja</string>
+      </array>
+    </config-file>
+  </platform>
+  <platform name="android">
+    <preference name="android-targetSdkVersion" value="29"/>
+    <splash src="/res/android/screen/splash-port-ldpi.9.png" density="port-ldpi"/>
+    <splash src="/res/android/screen/splash-port-mdpi.9.png" density="port-mdpi"/>
+    <splash src="/res/android/screen/splash-port-hdpi.9.png" density="port-hdpi"/>
+    <splash src="/res/android/screen/splash-port-xhdpi.9.png" density="port-xhdpi"/>
+    <splash src="/res/android/screen/splash-port-xxhdpi.9.png" density="port-xxhdpi"/>
+    <splash src="/res/android/screen/splash-port-xxxhdpi.9.png" density="port-xxxhdpi"/>
+    <splash src="/res/android/screen/splash-mdpi.png" density="mdpi"/>
+    <preference name="android-minSdkVersion" value="22"/>
+    <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+      <application android:usesCleartextTraffic="true"/>
+    </edit-config>
+    <resource-file src="res/android/mipmap-mdpi/ic_launcher.png" target="app/src/main/res/drawable-ldpi/my_icon.png"/>
+    <resource-file src="res/android/mipmap-mdpi/ic_launcher.png" target="app/src/main/res/drawable-mdpi/my_icon.png"/>
+    <resource-file src="res/android/mipmap-hdpi/ic_launcher.png" target="app/src/main/res/drawable-hdpi/my_icon.png"/>
+    <resource-file src="res/android/mipmap-xhdpi/ic_launcher.png" target="app/src/main/res/drawable-xhdpi/my_icon.png"/>
+    <custom-config-file parent="./application" target="AndroidManifest.xml">
+      <meta-data android:name="smallIcon" android:resource="@drawable/my_icon"/>
+      <meta-data android:name="smallIconColor" android:value="0x01a2c1"/>
+    </custom-config-file>
+    <icon src="/res/android/mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" background="/res/android/mipmap-xxxhdpi/ic_launcher_background.png" foreground="/res/android/mipmap-xxxhdpi/ic_launcher_foreground.png"/>
+    <icon src="/res/android/mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" background="/res/android/mipmap-xxhdpi/ic_launcher_background.png" foreground="/res/android/mipmap-xxhdpi/ic_launcher_foreground.png"/>
+    <icon src="/res/android/mipmap-xhdpi/ic_launcher.png" density="xhdpi" background="/res/android/mipmap-xhdpi/ic_launcher_background.png" foreground="/res/android/mipmap-xhdpi/ic_launcher_foreground.png"/>
+    <icon src="/res/android/mipmap-hdpi/ic_launcher.png" density="hdpi" background="/res/android/mipmap-hdpi/ic_launcher_background.png" foreground="/res/android/mipmap-hdpi/ic_launcher_foreground.png"/>
+    <icon src="/res/android/mipmap-mdpi/ic_launcher.png" density="mdpi" background="/res/android/mipmap-mdpi/ic_launcher_background.png" foreground="/res/android/mipmap-mdpi/ic_launcher_foreground.png"/>
+    <icon src="/res/android/mipmap-mdpi/ic_launcher.png" density="ldpi" background="/res/android/mipmap-mdpi/ic_launcher_background.png" foreground="/res/android/mipmap-mdpi/ic_launcher_foreground.png"/>
+    <preference name="AndroidXEnabled" value="true"/>
+  </platform>
+  <platform name="electron">
+    <icon src="/res/electron/icon/icon_electron_512.png" width="512" height="512"/>
+    <splash src="/res/electron/screen/electron_splash_image.png" width="620" height="300"/>
+    <preference name="SplashScreenWidth" value="620"/>
+    <preference name="SplashScreenHeight" value="300"/>
+    <preference name="ShowSplashScreen" value="false"/>
+  </platform>
+  <preference name="WindowsStorePublisherName" value="My Name"/>
+  <preference name="WindowsStoreIdentityName" value="c0bd982c-1157-c23e-4937-ae0746a6f0dc"/>
+  <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <string>写真を撮影します。撮影した写真をメルママのメッセージに送ります。</string>
+  </edit-config>
+  <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+    <string>写真を取得します。取得した写真をメルママのメッセージに送ります。</string>
+  </edit-config>
+  <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+    <string>現在地を取得します。</string>
+  </edit-config>
+  <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
+    <string>撮影した写真を保存します。</string>
+  </edit-config>
+  <preference name="KeepRunning" value="true"/>
+  <preference name="monaca:AndroidIsPackageNameSeparate" value="false"/>
+  <preference name="Orientation" value="portrait"/>
+  <preference name="SplashScreenDelay" value="0"/>
+  <preference name="Fullscreen" value="false"/>
+  <preference name="target-device" value="universal"/>
+  <preference name="AutoHideSplashScreen" value="true"/>
+  <preference name="FadeSplashScreen" value="true"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/>
+  <access origin="*"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="EnableViewportScale" value="true"/>
+  <preference name="android-build-tool" value="gradle" />
+</widget>

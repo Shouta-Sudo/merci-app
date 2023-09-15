@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "862973260548",
+    "project_id": "mercimaman-4d8ea",
+    "storage_bucket": "mercimaman-4d8ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862973260548:android:d681d1cdab39a091669651",
+        "android_client_info": {
+          "package_name": "jp.co.apicetec.mercimaman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862973260548-imvqep4oue7o2ti71nd2onbeoa5p3fl5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz7nToxXhy3IowhQzdfnRdOZm2t8S8AQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862973260548-imvqep4oue7o2ti71nd2onbeoa5p3fl5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

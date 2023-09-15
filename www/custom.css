@@ -1,0 +1,38 @@
+/** カスタムカラー **/
+.navigation-bar,
+.button-bar__item.active > .button-bar__button, :checked + .button-bar__button
+ {
+	background-color: #00bcd4;
+}
+.button-bar__item > .button-bar__button {
+	border-color: #00bcd4!important;
+}
+.button-bar__button {
+	border-color: #00bcd4;
+	color: #00bcd4;
+}
+.bottom-bar {
+	background-color: #00bcd4;
+}
+
+.cColor1 {
+	background-color: #00bcd4;
+}
+.cColorCheckMark {
+	color: #03A9F4;
+}
+.cColorListBorder {
+	border-bottom: 1px solid #eeeeee!important;
+}
+.cColorSeleted {
+	background-color: #E0F7FA;
+}
+.cColorBorder {
+	border-color: #B2EBF2;
+}
+.cColorSectionTitle {
+	background-color: #ECEFF1;
+	border-top: 1px solid #CFD8DC;
+	border-bottom: #E0F7FA;
+	color: #00bcd4;
+}

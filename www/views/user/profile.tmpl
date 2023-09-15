@@ -1,0 +1,250 @@
+<template id="user_profile">
+	<v-ons-page id="-user_profile-" @show="init()">
+
+    <!--ヘッダー-->
+		<page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area">
+
+			<div class="uk-container mypage-inner-wrap">
+
+				<div class="mypage-inner">
+
+					<h1>メルママメイト</h1>
+
+					<div class="profile-wrap">
+
+						<div class="uk-flex profile-inner-wrap">
+
+							<div class="profile-left-block">
+		                        <div class="profile-thumb-wrap">
+		                            <div class="profile-thumb">
+										<img :src="get_avator_url(user.user_profile.image_id, user.user_profile.kanri_user_flg)"
+					                          alt="アバター" />
+		                            </div>
+		                        </div>
+		                    </div>
+
+							<div class="profile-right-block">
+		                        <div class="uk-flex uk-flex-middle profile-name">
+		                            <p>{{user.user_profile.nickname}}　さん</p>
+		                            <img v-if="user.user_profile.chat" src="img/mypage/icon_message_01.png" alt="吹出">
+		                        </div>
+		                        <ul class="profile-list">
+		                            <li>{{get_prefecture_name(user.user_detail.prefecture_id)}}在住</li>
+		                            <li>{{birthday_to_age(user.user_profile.birthday)}}</li>
+		                            <li>{{get_condition(user.user_profile)}}</li>
+									<li v-if="user.user_detail.work">{{user.user_detail.work}}</li>
+		                        </ul>
+								<div v-if="user.user_detail.identification == 2" class="profile-inner-wrap">
+									<div class="profile-inner-wrap uk-margin-small-bottom">
+										<div><img src="img/icon_approval.svg" alt="本人確認済">
+										 </div>
+									</div>
+								</div>
+								<div class="uk-flex uk-flex-middle profile-review">
+		                            <h3><span>つぶやき<br>リアクション合計</span></h3>
+		                            <div class="uk-flex uk-flex-column uk-margin-auto-left">
+		                                <div class="uk-flex uk-flex-middle profile-review-num">
+		                                    <div class="profile-review-icon"><img src="img/icon_tweet_like.svg" alt="いいね" class="uk-display-block"></div>
+		                                    <p>{{tweet_sum.check1_sum}}件</p>
+		                                </div>
+		                                <div class="uk-flex uk-flex-middle profile-review-num">
+		                                    <div class="profile-review-icon"><img src="img/icon_tweet_handclap.svg" alt="えらい" class="uk-display-block"></div>
+		                                    <p>{{tweet_sum.check2_sum}}件</p>
+		                                </div>
+		                                <div class="uk-flex uk-flex-middle profile-review-num">
+		                                    <div class="profile-review-icon"><img src="img/icon_tweet_understand.svg" alt="わかる" class="uk-display-block"></div>
+		                                    <p>{{tweet_sum.check3_sum}}件</p>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+
+						</div>
+<!--
+						<div class="uk-flex uk-flex-center uk-flex-middle profile-follow-wrap">
+							<div class="profile-follow">
+		                        <div class="profile-follow-num">
+		                            {{favorites.userfollow}}
+		                        </div>
+		                        <p>フォロー</p>
+		                    </div>
+		                    <div class="profile-follow">
+		                        <div class="profile-follow-num">
+		                            {{favorites.userfollower}}
+		                        </div>
+		                        <p>フォロワー</p>
+		                    </div>
+						</div>
+-->
+		                <div class="uk-flex uk-flex-middle profile-follow-btns">
+							<button v-if="is_following" @click="toggleFollow" class="profile-follow-btn profile-follow-btn-follow">フォローをやめる</button>
+							<button v-else @click="toggleFollow" class="profile-follow-btn profile-follow-btn-follow">フォローする</button>
+							<button v-if="user.user_profile.chat != 0 && login_user_chat != 0" @click="nextPage('user_message')" class="profile-follow-btn profile-follow-btn-message">メッセージ</button>
+		                </div>
+						<div v-if="is_others" class="block_button uk-text-right">
+							<p v-if="is_block" @click="setBlock" id="block_btn_off" class="profile-follow-btn-block uk-margin-auto-left uk-flex" name="block_btn" value="0"><img src="img/mypage/icon_block.svg" alt="ブロック">ユーザーのブロックを解除する</p>
+                            <p v-else @click="setBlock" id="block_btn_on" class="profile-follow-btn-block uk-margin-auto-left uk-flex" name="block_btn" value="1"><img src="img/mypage/icon_block.svg" alt="ブロック"></p>
+                        </div>
+
+						<div class="mypage-btn-area-wrap">
+
+							<!-- <div class="mypage-btn-area">
+			                    <h2 class="uk-flex uk-flex-middle">好きなテイスト</h2>
+			                    <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-between uk-flex-wrap mypage-taste-btns">
+														<div v-if="user.user_profile.taste1" :class="get_matching_taste_css(user.user_profile.taste1)">{{get_matching_taste_text(user.user_profile.taste1)}}</div>
+														<div v-if="user.user_profile.taste2" :class="get_matching_taste_css(user.user_profile.taste2)">{{get_matching_taste_text(user.user_profile.taste2)}}</div>
+														<div v-if="user.user_profile.taste3" :class="get_matching_taste_css(user.user_profile.taste3)">{{get_matching_taste_text(user.user_profile.taste3)}}</div>
+			                    </div>
+							</div> -->
+
+							<div class="mypage-btn-area">
+			                    <h2 class="uk-flex uk-flex-middle">ママが興味のあること</h2>
+			                    <div class="uk-flex uk-flex-middle uk-flex-between uk-flex-wrap mypage-btn-area-btns">
+			                        <div v-if="user.user_profile.mother_interest1">{{user.user_profile.mother_interest1}}</div>
+			                        <div v-if="user.user_profile.mother_interest2">{{user.user_profile.mother_interest2}}</div>
+			                        <div v-if="user.user_profile.mother_interest3">{{user.user_profile.mother_interest3}}</div>
+			                        <div v-if="user.user_profile.mother_interest4">{{user.user_profile.mother_interest4}}</div>
+			                    </div>
+			                </div>
+
+							<div class="mypage-btn-area">
+			                    <h2 class="uk-flex uk-flex-middle">お子さんが興味のあること</h2>
+			                    <div class="uk-flex uk-flex-middle uk-flex-between uk-flex-wrap mypage-btn-area-btns">
+			                        <div v-if="user.user_profile.child_interest1">{{user.user_profile.child_interest1}}</div>
+			                        <div v-if="user.user_profile.child_interest2">{{user.user_profile.child_interest2}}</div>
+			                        <div v-if="user.user_profile.child_interest3">{{user.user_profile.child_interest3}}</div>
+			                        <div v-if="user.user_profile.child_interest4">{{user.user_profile.child_interest4}}</div>
+			                    </div>
+			                </div>
+
+							<div class="mypage-btn-area">
+			                    <h2 class="uk-flex uk-flex-middle">ママやお子さんが経験したこと</h2>
+			                    <div class="uk-flex uk-flex-middle uk-flex-between uk-flex-wrap mypage-btn-area-btns">
+			                        <div v-if="user.user_profile.experience1">{{user.user_profile.experience1}}</div>
+			                        <div v-if="user.user_profile.experience2">{{user.user_profile.experience2}}</div>
+			                        <div v-if="user.user_profile.experience3">{{user.user_profile.experience3}}</div>
+			                        <div v-if="user.user_profile.experience4">{{user.user_profile.experience4}}</div>
+			                    </div>
+			                </div>
+
+							<div class="mypage-introduction uk-margin-medium-bottom">
+			                    <h2 class="uk-flex uk-flex-middle">自己紹介</h2>
+			                    <p>{{user.user_profile.introduction}}</p>
+			                </div>
+
+							<div class="mypage-introduction uk-margin-medium-bottom">
+			                    <h2 class="uk-flex uk-flex-middle">URL</h2>
+								<p v-if="user.user_profile.url_title1 || user.user_profile.url1" class="uk-margin-bottom">
+									{{user.user_profile.url_title1}}<br>
+									<a v-if="user.user_profile.url1" @click="moveToExWeb(`${user.user_profile.url1}`)" target=_blank>{{user.user_profile.url1}}</a>
+								</p>
+								<p v-if="user.user_profile.url_title2 || user.user_profile.url2" class="uk-margin-bottom">
+									{{user.user_profile.url_title2}}<br>
+									<a v-if="user.user_profile.url2" @click="moveToExWeb(`${user.user_profile.url2}`)" target=_blank>{{user.user_profile.url2}}</a>
+								</p>
+								<p v-if="user.user_profile.url_title3 || user.user_profile.url3">
+									{{user.user_profile.url_title3}}<br>
+									<a v-if="user.user_profile.url3" @click="moveToExWeb(`${user.user_profile.url3}`)" target=_blank>{{user.user_profile.url3}}</a>
+								</p>
+			                </div>
+
+							<div class="mypage-tweet-wrap uk-margin-medium-bottom">
+		                       <h2 class="uk-flex uk-flex-middle">ツイート</h2>
+
+							   <div v-for="tweet in tweets">
+			                       <div class="uk-flex uk-flex-middle tweet-list-avatar-name-wrap uk-margin-bottom" id="first_tweet">
+									   <div class="uk-flex uk-flex-column tweet-item-text uk-width-1-1">
+											<p @click="nextPage(tweet_details_view, tweet.id)" class="blackText uk-text-break tweet_list_text">{{tweet.tweet}}</p>
+
+										   <div class="reply_ctrl uk-flex uk-child-width-1-4@m uk-child-width-auto uk-flex-left@m uk-flex-between uk-margin-small-top">
+											   <div class="uk-flex uk-flex-middle">
+												   <v-ons-button @click="nextPage(tweet_comment_view, tweet.id)" modifier="quiet" class="each_icon"><img src="img/icon_tweet_comment.svg" alt="コメントする"></v-ons-button>
+												   <v-ons-button modifier="quiet" class="blackText uk-button-link">{{tweet.comment_cnt}}</v-ons-button>
+											   </div>
+											   <div>
+												   <div class="uk-flex uk-flex-middle">
+													   <v-ons-button @click="put_tweet(tweet.id, 1)" :disabled="!!tweet.history" modifier="quiet" class="each_icon">
+														   <img :class="tweet.history ? `pc_off_{$item.id}` : `pc_on_{$item.id}`"
+															 			:src	="tweet.history ? 'img/icon_tweet_like_disabled.svg' : 'img/icon_tweet_like.svg'" alt="いいね" />
+													   </v-ons-button>
+													   <div class="blackText" id="pc_check1_cnt_{$item.id}">{{tweet.check1}}</div>
+												   </div>
+											   </div>
+											   <div>
+												   <div class="uk-flex uk-flex-middle">
+													   <v-ons-button @click="put_tweet(tweet.id, 2)" :disabled="!!tweet.history" modifier="quiet" class="each_icon">
+														   <img :class="tweet.history ? `pc_off_{$item.id}` : `pc_on_{$item.id}`"
+																		:src	="tweet.history ? 'img/icon_tweet_handclap_disabled.svg' : 'img/icon_tweet_handclap.svg'" alt="えらい" />
+													   </v-ons-button>
+													   <div class="blackText" id="pc_check2_cnt_{$item.id}">{{tweet.check2}}</div>
+												   </div>
+											   </div>
+											   <div>
+												   <div class="uk-flex uk-flex-middle">
+													   <v-ons-button @click="put_tweet(tweet.id, 3)" :disabled="!!tweet.history" modifier="quiet" id="pc_check3_{$item.id}" class="each_icon">
+														   <img :class="tweet.history ? `pc_off_{$item.id}` : `pc_on_{$item.id}`"
+																	  :src	="tweet.history ? 'img/icon_tweet_understand_disabled.svg' : 'img/icon_tweet_understand.svg'" alt="わかる" />
+													   </v-ons-button>
+													   <div class="blackText" id="pc_check3_cnt_{$item.id}">{{tweet.check3}}</div>
+												   </div>
+											   </div>
+										   </div>
+									   </div>
+								   </div>
+
+								   <div class="mypage-tweet-more-wrap" id="v_more_btn">
+										 <div v-if="!is_get_tweets_more" @click="is_get_tweets_more = true" class="mypage-tweet-more">もっと見る></div>
+										</div>
+									</div>
+									<div v-if="!tweets.length">ツイートはまだありません</div>
+						   </div>
+
+							<div class="mypage-tweet-wrap uk-margin-medium-bottom">
+								<h2 class="uk-flex uk-flex-middle">体験記</h2>
+
+								<div v-if="experience_list.total > 0" v-for="experience in experience_list.data">
+									<div class="uk-flex uk-flex-middle tweet-list-avatar-name-wrap uk-margin-bottom" id="first_tweet">
+										<div class="uk-flex uk-flex-column tweet-item-text uk-width-1-1">
+												<p @click="moveToWeb('board/exp_detail/',`&id=${experience.id}`)" class="blackText uk-text-break tweet_list_text">{{experience.title}}</p>
+										</div>
+									</div>
+								</div>
+								<div class="mypage-tweet-more-wrap" id="v_more_btn">
+									<div v-if="!is_get_experience_more && experience_list.total > 3" @click="is_get_experience_more = true" class="mypage-tweet-more">もっと見る></div>
+								</div>
+								<div v-if="experience_list.total == 0">体験記はまだありません</div>
+							</div>
+
+							<div class="bottom-button uk-flex-middle uk-flex uk-flex-center uk-margin-medium-bottom profile-follow-btns">
+								<div class="uk-text-center uk-margin-top" v-if="back_to_detail_flag == true">
+									<v-ons-button @click="moveToPrev()" class="uk-button item-detail-back-btn uk-button-primary">つぶやきに戻る</v-ons-button>
+								</div>
+
+								<div class="uk-text-center uk-margin-top" v-if="back_to_index_flag == true">
+									<v-ons-button @click="nextPage('tweet_list')" class="uk-button item-detail-back-btn uk-button-primary">つぶやき一覧に戻る</v-ons-button>
+								</div>
+
+								<div class="uk-text-center uk-margin-top">
+									<v-ons-button class="uk-button item-detail-comment-btn uk-button-primary" @click="toUserIndex">一覧に戻る</v-ons-button>
+								</div>
+						   </div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+        </div><!--contents_area-->
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+		<bottom-navi></bottom-navi>
+
+	</v-ons-page>
+</template>

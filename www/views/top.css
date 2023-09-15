@@ -1,0 +1,981 @@
+/*** @@@views/top.css@@@ ***/
+
+/* ========================================================================
+   余白リセット
+ ========================================================================== */
+
+#-top- p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ========================================================================
+   スライダーはみ出し分、hidden設定
+ ========================================================================== */
+
+#-top- .page__content {
+    overflow-x: hidden;
+}
+
+
+/* ========================================================================
+   コンテンツ関連スタイル
+ ========================================================================== */
+
+#-top- .contents_area {
+}
+
+#-top- h2 {
+  font-family: "Noto Sans JP", sans-serif;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  color: #606060;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  #-top- h2 {
+    font-size: 15px;
+    text-align: center;
+  }
+}
+
+#-top- .button--quiet {
+    padding: 0;
+}
+
+
+
+#-top- .tweet-detail-com-inner {
+  margin: 0 auto calc(2 * 16px);
+
+}
+
+@media (max-width: 768px) {
+    #-top- .tweet-detail-com-inner h2 {
+        padding-top: 0;
+    }
+    #-top- .tweet-detail-com-inner {
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+#-top- .tweet-detail-com-inner .inner {
+    background-color: #fdfdf7;
+    border-radius: 10px;
+    padding: calc(2 * 16px) calc(2 * 16px);
+
+}
+
+@media (max-width: 768px) {
+    #-top- .tweet-detail-com-inner .inner {
+        padding: calc(1.5 * 16px) calc(0.5 * 16px);
+    }
+}
+
+#-top- .tweet-detail-com-inner .top-tweet-more {
+  display: inline-block;
+  color: #606060;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  #-top- .tweet-detail-com-inner .top-tweet-more {
+    font-size: 12px;
+  }
+}
+
+#-top- .tweet-detail-com-inner .request-detail-avatar {
+  min-width: 68px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: calc(1 * 16px);
+}
+
+#-top- .tweet-detail-com-inner .request-detail-avatar .button--quiet {
+    padding: 0;
+}
+
+#-top- .tweet-detail-com-inner .request-comment-text {
+  min-height: 55px;
+  flex-grow: 1;
+  font-size: 11px;
+  border: solid 1px #606060;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: calc(0.5 * 16px);
+}
+
+#-top- .tweet-detail-com-inner .request-comment-text p {
+  margin-bottom: calc(0.5 * 16px);
+}
+
+#-top- .tweet-detail-com-inner .request-comment-text p .button {
+    border-radius: 0;
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+#-top- .reply_ctrl .each_icon {
+    padding-right: 8px;
+}
+
+#-top- .reply_ctrl .each_icon .uk-button-link {
+    line-height: 1;
+}
+
+#-top- .reply_ctrl img {
+    width: 20px;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    #-top- .reply_ctrl img {
+        width: 16px;
+    }
+}
+
+#-top- .reply_ctrl .button {
+    font-size: 11px;
+    line-height: 1;
+    border-radius: 0;
+}
+
+#-top- .reply_ctrl p {
+    margin-bottom: 0 !important;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+#-top- .top-news-reccomend-wrap {
+  flex-wrap: nowrap;
+	margin-bottom: calc(2 * 16px);
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+@media (max-width: 768px) {
+  #-top- .top-news-reccomend-wrap {
+    flex-wrap: wrap;
+		padding: 0;
+		margin-bottom: 0;
+  }
+}
+
+#-top- .top-news-reccomend-wrap.uk-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* #-top- .top-news {
+  width: 100%;
+  background-color: #fce1d4;
+  padding: calc(1.5 * 16px) calc(0.5 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-top- .top-news {
+    padding: 0 25px calc(1.5 * 16px);
+  }
+}
+
+#-top- .top-news .uk-grid .top-news-single .top-news-item-img {
+  position: relative;
+  width: 100%;
+}
+
+#-top- .top-news .uk-grid .top-news-single .top-news-item-img img {
+  width: 100%;
+  display: block;
+
+}
+
+#-top- .top-news .uk-grid .top-news-single .top-news-item-img .top-news-item-note {
+  position: absolute;
+  bottom: 10px;
+  background-color: #c2c4c4;
+  border-radius: 0 30px 30px 0;
+  font-size: 10px;
+  padding: calc(0.25 * 16px) calc(1 * 16px) calc(0.25 * 16px) calc(0.5 * 16px);
+    color: #fff;
+}
+
+#-top- .top-news .uk-grid-small {
+    margin-left: -5px;
+}
+
+#-top- .top-news .uk-grid-small > * {
+    padding-left: 5px;
+}
+
+#-top- .top-news .uk-grid-small > div {
+    margin-bottom: 15px;
+}
+
+#-top- .top-news .uk-grid-small > .uk-grid-margin {
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    #-top- .top-news .uk-grid-small {
+        margin-left: -15px;
+    }
+
+    #-top- .top-news .uk-grid-small > * {
+        padding-left: 15px;
+    }
+
+    #-top- .top-news .uk-grid-small > .uk-grid-margin {
+        margin-top: 15px;
+    }
+}
+
+#-top- .top-news .uk-grid .top-news-single .top-news-item-name {
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  background-color: #c2c4c4;
+  padding: calc(0.5 * 16px);
+    color: #fff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
+    line-height: 1.5em;
+    min-height: 45px;
+}
+
+#-top- .top-news .uk-grid .top-news-single .top-news-item-name p {
+    margin-bottom: 10px;
+} */
+
+#-top- .top-recommend {
+	width: 48.5%;
+	margin-left: auto;
+	background-color: #def8fc;
+	border-radius: 20px;
+	padding: calc(1.5 * 16px) calc(1.5 * 16px) calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+	#-top- .top-recommend {
+		width: 100%;
+		padding: calc(1.5 * 16px) 25px calc(2 * 16px) 25px;
+		border-radius: 0;
+		margin-left: 0;
+		box-sizing: border-box;
+	}
+}
+
+#-top- .top-recommend .top-recommend-post-wrap {
+	padding-top: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+	#-top- .top-recommend .top-recommend-post-wrap {
+		padding-top: 0;
+	}
+}
+
+#-top- .top-recommend .top-recommend-post-wrap .top-recommend-post {
+	background-color: #fff;
+	margin-bottom: calc(1 * 16px);
+	max-height: 150px;
+}
+
+#-top- .top-recommend .top-recommend-post-wrap .top-recommend-post .top-recommend-post-thumb {
+	flex-basis: 35%;
+}
+
+#-top- .top-recommend .top-recommend-post-wrap .top-recommend-post .top-recommend-post-thumb img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+
+#-top- .top-recommend .top-recommend-post-wrap .top-recommend-post .top-recommend-post-text {
+	flex-basis: 65%;
+	position: relative;
+	padding: calc(1.5 * 16px);
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+	#-top- .top-recommend .top-recommend-post-wrap .top-recommend-post .top-recommend-post-text {
+		padding: calc(1 * 16px);
+	}
+}
+
+#-top-
+	.top-recommend
+	.top-recommend-post-wrap
+	.top-recommend-post
+	.top-recommend-post-text
+	.top-recommend-post-title {
+	font-weight: bold;
+	margin-bottom: calc(1 * 16px);
+}
+
+@media (max-width: 768px) {
+	#-top-
+		.top-recommend
+		.top-recommend-post-wrap
+		.top-recommend-post
+		.top-recommend-post-text
+		.top-recommend-post-title {
+		font-size: 10px;
+		margin-bottom: calc(0.5 * 16px);
+	}
+}
+
+#-top-
+	.top-recommend
+	.top-recommend-post-wrap
+	.top-recommend-post
+	.top-recommend-post-text
+	.top-recommend-post-intro {
+	margin: 0;
+}
+
+@media (max-width: 768px) {
+	#-top-
+		.top-recommend
+		.top-recommend-post-wrap
+		.top-recommend-post
+		.top-recommend-post-text
+		.top-recommend-post-intro {
+		font-size: 10px;
+	}
+}
+
+#-top-
+	.top-recommend
+	.top-recommend-post-wrap
+	.top-recommend-post
+	.top-recommend-post-text
+	.top-recommend-post-readmore {
+	font-size: 11px;
+	text-decoration: none;
+	color: #8ed5e5;
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+}
+
+@media (max-width: 768px) {
+	#-top-
+		.top-recommend
+		.top-recommend-post-wrap
+		.top-recommend-post
+		.top-recommend-post-text
+		.top-recommend-post-readmore {
+		bottom: 2px;
+	}
+}
+
+#-top- .top-recommend .top-recommend-more {
+	display: inline-block;
+	color: #606060;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-decoration: none;
+}
+
+@media (max-width: 768px) {
+	#-top- .top-recommend .top-recommend-more {
+		font-size: 15px;
+		letter-spacing: 0.1em;
+	}
+}
+
+/* ------------------------------------------------------------------------------
+    イベントカレンダー・成長カレンダー関連スタイル
+-------------------------------------------------------------------------------*/
+
+#-top- .top-recommend .each_balloon {
+    margin-bottom: 0;
+}
+
+#-top- .top-recommend .each_balloon:first-child {
+    margin-top: -50px;
+}
+
+@media (max-width: 768px) {
+    #-top- .top-recommend .each_balloon:first-child {
+        margin-top: 0;
+    }
+}
+
+#-top- .top-recommend .each_balloon img {
+    width: 100px;
+}
+
+#-top- .top-recommend h2 {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    #-top- .top-recommend h2 {
+        padding-top: 0;
+    }
+}
+
+#-top- .top-recommend .book-area {
+    width: 270px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    background-image: url(../img/book-bg.svg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    padding-top: 35px;
+    padding-bottom: 60px;
+    padding-right: 20px;
+    padding-left: 20px;
+    position: relative;
+}
+
+@media (max-width: 450px) {
+    #-top- .top-recommend .book-area {
+        width: 240px;
+        padding-top: 32px;
+        padding-bottom: 65px;
+    }
+}
+
+#-top- .top-recommend .book-area .month-txt {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+}
+
+@media (max-width: 450px) {
+    #-top- .top-recommend .book-area .month-txt {
+        font-size: 38px;
+        margin-bottom: 0;
+    }
+}
+
+#-top- .top-recommend .book-area .eyecatch {
+    width: 88%;
+}
+
+@media (max-width: 450px) {
+    #-top- .top-recommend .book-area .eyecatch {
+        width: 90%;
+    }
+}
+
+#-top- .top-recommend .part-books {
+    width: 80px;
+    position: absolute;
+    right: -48px;
+    bottom: -6px;
+}
+
+@media (max-width: 450px) {
+    #-top- .top-recommend .part-books {
+        width: 70px;
+        right: -42px;
+        bottom: -3px;
+    }
+}
+
+#-top- .top-recommend .growth-area {
+    width: 270px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    #-top- .top-recommend .growth-area {
+        width: 350px;
+    }
+}
+
+@media (max-width: 450px) {
+    #-top- .top-recommend .growth-area {
+        width: 310px;
+    }
+}
+
+#-top- .top-recommend .growth-area .growth1 {
+    height: 53px;
+}
+
+#-top- .top-recommend .growth-area .growth2 {
+    height: 94px;
+}
+
+#-top- .top-recommend .growth-area .growth3 {
+    height: 110px;
+}
+
+@media (max-width: 768px) {
+    #-top- .top-recommend .growth-area .growth1 {
+        height: 78px;
+    }
+
+    #-top- .top-recommend .growth-area .growth2 {
+        height: 124px;
+    }
+
+    #-top- .top-recommend .growth-area .growth3 {
+        height: 142px;
+    }
+}
+
+@media (max-width: 450px) {
+    #-top- .top-recommend .growth-area .growth1 {
+        height: 58px;
+    }
+    #-top- .top-recommend .growth-area .growth2 {
+        height: 104px;
+    }
+    #-top- .top-recommend .growth-area .growth3 {
+        height: 122px;
+    }
+}
+
+#-top- .top-news {
+	width: 48.5%;
+	background-color: #fce1d4;
+	border-radius: 20px;
+	padding: calc(1.5 * 16px) calc(1.5 * 16px) calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+	#-top- .top-news {
+		width: 100%;
+		padding: calc(1.5 * 16px) 25px calc(2 * 16px) 25px;
+		border-radius: 0;
+	}
+}
+
+#-top- .top-news-community {
+  margin-bottom: calc(3 * 16px);
+  max-width: 380px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    #-top- .top-news-community {
+      max-width: 320px;
+    }
+}
+
+#-top- .premama-btn {
+  border: none;
+  color: #606060;
+  /* font-size: 15px; */
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+#-top- .premama-btn a {
+  margin-bottom: 20px
+}
+
+#-top- .premama-btn:hover {
+  text-decoration: none;
+  color: #606060;
+}
+
+/* ------------------------------------------------------------------------------
+  top-news ママコミュニティ  スタイル
+-------------------------------------------------------------------------------*/
+
+#-top- .top-news-menu-single {
+	height: 120px;
+	width: 120px;
+	border: solid 2px #fff;
+	border-radius: 25px;
+	font-size: 11px;
+    font-weight: bold;
+	color: #fff;
+	background-color: #939393;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-right: calc(0.25 * 16px);
+	text-decoration: none;
+    padding: 10px;
+}
+
+#-top- .top-news-menu-icon {
+    text-align: center;
+    width: 85%;
+}
+
+#-top- .top-news-menu-icon img {
+    display: inline-block;
+}
+
+#-top- .top-news-menu-text {
+    line-height: 1.5em;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+	#-top- .top-news-menu-single {
+		width: 32%;
+		border-radius: 20px;
+		height: 90px;
+        padding: 0;
+        line-height: 15px;
+	}
+	#-top- .top-news-menu-icon {
+		width: 56%;
+	}
+}
+
+#-top- .top-news-menu-01 {
+	background-color: #9cd094;
+}
+
+#-top- .top-news-menu-02 {
+	background-color: #a1c4f7;
+    margin-right: calc(1.2 * 16px);
+}
+
+#-top- .top-news-menu-03 {
+	background-color: #F4D781;
+    margin-right: calc(1.2 * 16px);
+}
+
+
+/* ------------------------------------------------------------------------------
+  top-news 週替わりコンテンツ  スタイル
+-------------------------------------------------------------------------------*/
+
+#-top- .top-news .weekly-content .weekly-btns {
+	margin-bottom: calc(1.5 * 16px);
+}
+
+#-top- .top-news .weekly-content .weekly-btns:last-child {
+	margin-bottom: calc(4 * 16px);
+}
+
+@media (max-width: 768px) {
+    #-top- .top-news .weekly-content .weekly-btns button:first-of-type {
+		margin-bottom: calc(1.5 * 16px);
+	}
+
+	#-top- .top-news .weekly-content .weekly-btns {
+		flex-wrap: wrap;
+		margin-bottom: calc(1.25 * 16px);
+	}
+	#-top- .top-news .weekly-content .weekly-btns:last-child {
+		margin-bottom: 0;
+	}
+
+	#-top- .top-news .weekly-content .weekly-btns:last-child >button {
+		margin-bottom: 0;
+	}
+}
+
+#-top- .top-news .weekly-content .weekly-btns .contents_button {
+	border: none;
+	outline: none;
+	appearance: none;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: left;
+	line-height: 1.8;
+	border-radius: 10px;
+	padding: 1em 1.5em;
+	width: 48%;
+}
+
+@media (max-width: 768px) {
+	#-top- .top-news .weekly-content .weekly-btns .contents_button {
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+	#-top- .top-news .weekly-content .weekly-btns .contents_button::after {
+		display: block;
+		content: "";
+		background-image: url("../img/icon_right_active_white.png");
+		background-size: contain;
+		width: 9px;
+		height: 9px;
+		margin-left: auto;
+	}
+}
+
+@media (max-width: 768px) {
+	#-top- .top-news .weekly-content .weekly-btns .contents_button:first-of-type {
+		margin-bottom: calc(1.5 * 16px);
+	}
+}
+
+@media (max-width: 768px) {
+	#-top- .top-news .weekly-content .weekly-btns .contents_button.blackArrow::after {
+		background-image: url("../img/icon_right_active_white.png");
+	}
+}
+
+#-top- .top-recommend-title {
+	margin-top: 60px;
+	text-align: center;
+}
+
+#-top- .growth-btn-area {
+  display: flex
+}
+
+.growth-btn-area .uk-button {
+  border: solid 1px #fbc2a1;
+  background-color: #fff;
+  color: #606060;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  border-radius: 30px;
+  padding: calc(0.25 * 16px) 0;
+  width: 100%;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------------------
+  top-recommend   カレンダーエリア　スタイル
+-------------------------------------------------------------------------------*/
+
+.recommend-btn-area .uk-button {
+	border: solid 1px #fbc2a1;
+  background-color: #fff;
+  color: #606060;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  border-radius: 30px;
+  padding: calc(0.25 * 16px) 0;
+  width: 100%;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------------------
+  top-suggest   スタイル
+-------------------------------------------------------------------------------*/
+
+#-top- .top-suggest-wrap {
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+	#-top- .top-suggest-wrap {
+        padding: 0;
+        margin-bottom: 0;
+	}
+}
+
+#-top- .top-suggest{
+	margin: auto;
+	border-radius: 20px;
+	padding: calc(1.5 * 16px) calc(1.5 * 16px) calc(2 * 16px);
+	background-color: #E9FCDE;
+}
+
+@media (max-width: 768px) {
+	#-top- .top-suggest{
+		/* width: 100%; */
+		padding: calc(1.5 * 16px) 25px calc(2 * 16px) 25px;
+		border-radius: 0;
+		margin-left: 0;
+		box-sizing: border-box;
+	}
+}
+
+.top-suggest-post-wrap {
+	padding-top: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+	.top-suggest-post-wrap {
+		padding-top: 0;
+	}
+}
+
+.top-suggest-post {
+	background-color: #fff;
+	margin-bottom: calc(1 * 16px);
+	max-height: 150px;
+}
+
+.top-suggest-post-thumb {
+	flex-basis: 35%;
+}
+
+.top-suggest-post-thumb img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+
+.top-suggest-post-text {
+	flex-basis: 65%;
+	position: relative;
+	padding: calc(1.5 * 16px);
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+	.top-suggest-post-text {
+		padding: calc(1 * 16px);
+	}
+}
+
+	.top-suggest-post-title {
+	font-weight: bold;
+	margin-bottom: calc(1 * 16px);
+}
+
+@media (max-width: 768px) {
+	.top-suggest-post-title {
+		font-size: 10px;
+		margin-bottom: calc(0.5 * 16px);
+	}
+}
+
+	.top-suggest-post-intro {
+	margin: 0;
+}
+
+@media (max-width: 768px) {
+	.top-suggest-post-intro {
+		font-size: 10px;
+	}
+}
+
+
+.top-suggest-post-readmore {
+	font-size: 11px;
+	text-decoration: none;
+	color: #8ed5e5;
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+}
+
+@media (max-width: 768px) {
+.top-suggest-post-readmore {
+		bottom: 2px;
+	}
+}
+
+#-top- footer .uk-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+@media (max-width: 768px) {
+    #-top- footer .uk-container.footer-sitemap-wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* ------------------------------------------------------------------------------
+  top-banner   スタイル
+-------------------------------------------------------------------------------*/
+.apc-m10 {
+    margin: 10px !important;
+}
+
+/* ------------------------------------------------------------------------------
+  top　つぶやきスタイル
+-------------------------------------------------------------------------------*/
+.nickname {
+    font-size: 10px;
+    line-height: 1.2;
+    color: #606060;
+    overflow-wrap: break-word;
+    margin-top: 5px;
+    font-size: 11px;
+}
+
+.avatar-box {
+    width: 68px;
+    text-align: center;
+    margin-right: calc(1 * 16px);
+}
+
+/* ------------------------------------------------------------------------------
+  top　スライダー   スタイル
+-------------------------------------------------------------------------------*/
+
+#-top- .slick-slide img {
+    width: 100%;
+}
+
+#-top- .slider-for .slick-dots li {
+	margin: 0;
+    margin-right: 3px;
+	width: 10px;
+	height: 25px;
+}
+
+#-top- .slider-for .slick-dots li button:before {
+    content: "\025cb";
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    opacity: 1;
+}
+
+#-top- .slider-for .slick-dots li.slick-active button:before {
+    content: "\025cf";
+    color: #606060;
+	opacity: 1;
+    font-size: 10px;
+}
+
+#-top- .slider-for .slick-prev {
+    left: 15px;
+    z-index: 5;
+}
+
+#-top- .slider-for .slick-next {
+    right: 15px;
+}
+
+#-top- .slider img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    #-top- .slider img {
+    width: 100%;
+    height: 24.5vw;
+    object-fit: cover;
+  }
+}

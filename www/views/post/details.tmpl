@@ -1,0 +1,163 @@
+<template id="details">
+    <v-ons-page id="-post-details-" @show="init()" :infinite-scroll="scrolledToBottom">
+
+        <!-- ヘッダー -->
+        <page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area">
+
+            <div class="uk-container tweet-detail-inner-wrap">
+
+                <div class="tweet-detail-inner">
+
+                    <div class="tweet-detail-content">
+
+                        <h1>つぶやき</h1>
+
+                        <div class="uk-flex uk-flex-column uk-margin-top uk-margin-medium-bottom">
+
+                            <div class="uk-flex uk-flex-middle tweet-detail-avatar-name-wrap uk-margin-bottom">
+                                <div class="tweet-detail-avatar-wrap">
+                                    <div class="tweet-detail-thumb-wrap">
+                                        <div class="avatar">
+                                            <img @click="login_status ? moveToProfile(tweet_details.user_id) : moveToLogin()" :src="get_avator_url(tweet_details.image_id, tweet_details.kanri_user_flg)" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post_info">
+                                    <p class="name">{{tweet_details.nickname}}</p>
+                                    <p class="uk-margin-remove fsS">{{dateFormat(tweet_details.created_at)}}</p>
+                                </div>
+                            </div>
+
+                            <div class="tweet_txt">
+                                <p class="blackText uk-text-break ">{{tweet_details.tweet}}</p>
+                            </div>
+                            
+                            <p class="user-report uk-margin-auto-left uk-margin-right" @click="showConfirmation()"><img src="img/icon_report.svg" alt="報告"></p>
+                            <div class="reply_ctrl uk-flex uk-flex-between">
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon" @click="login_status ? moveToComment(tweet_details.tweet_id):  moveToLogin()">
+                                            <img src="img/icon_tweet_comment.svg" alt="コメントする">
+                                        </span>
+                                        <span class="">
+                                            コメント {{tweet_details.comment_cnt}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img src="img/icon_tweet_like.svg" alt="いいね">
+                                        </span>
+                                        <span class="">
+                                            いいね {{tweet_details.check1}}人
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img src="img/icon_tweet_handclap.svg" alt="えらい">
+                                        </span>
+                                        <span class="">
+                                            えらい {{tweet_details.check2}}人
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <span class="each_icon">
+                                            <img src="img/icon_tweet_understand.svg" alt="わかる">
+                                        </span>
+                                        <span class="">
+                                            わかる {{tweet_details.check3}}人
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!--　reply_ctrl -->
+
+                        </div>
+
+                        <div class="comment_area">
+
+                            <h4 class="uk-flex uk-flex-middle">コメント</h4>
+
+                            <div v-if="comment_list.length > 0" v-for="item in comment_list" class="uk-flex uk-flex-top tweet-detail-avatar-name-wrap2 uk-margin-bottom">
+
+                                <div class="avatar">
+                                    <img @click="login_status ? moveToProfile(item.user_id):  moveToLogin()" :src="get_avator_url(item.image_id, item.kanri_user_flg)" alt="">
+                                </div>
+
+                                <div class="uk-flex uk-flex-column tweet-comment-text uk-width-expand">
+                                    <div class="uk-flex uk-flex-middle">
+                                        <div class="uk-text-bold mr10px">{{item.nickname}}</div>
+                                        <div class="fsS">{{dateFormat(item.created_at)}}</div>
+                                    </div>
+    								<p @click="moveToReDetails(item.id)" class="uk-margin-small-top uk-margin-small-bottom uk-text-break uk-width-1-1">
+    									{{item.tweet}}
+    								</p>
+
+                                    <div class="reply_ctrl uk-flex uk-flex-between">
+                                        <div>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <span class="each_icon">
+                                                    <img @click="login_status ? moveToComment(item.id):  moveToLogin()" src="img/icon_tweet_comment.svg" alt="コメントする">
+                                                </span>
+                                                <span :id='`comment_${item.id}`' @click="moveToReDetails(item.id)">{{item.comment_cnt}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+    							</div>
+
+                            </div>
+
+                            <div v-if="comment_list.length == 0" class="uk-flex uk-flex-middle request-detail-avatar-name-wrap2 uk-margin-bottom">
+                                コメントはまだありません。
+                            </div>
+
+                        </div>
+
+                        <div class="uk-text-center uk-margin-top">
+                            <v-ons-button @click="moveToIndex()" class="uk-button item-detail-back-btn uk-button-primary">つぶやき一覧に戻る</v-ons-button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!--contents_area-->
+
+        <template id="report-dialog.html">
+            <ons-dialog id="report-dialog" cancelable>
+                <div class="p10 uk-text-center">
+                <p class="mb20 uk-text-center">このコンテンツを運営者に報告します。</p>
+                <p>
+                    <v-ons-button @click="report_contents()" class="ok_btn">OK</v-ons-button>
+                </p>
+                <p class="mb10">
+                    <v-ons-button @click="cancel_report()" modifier="quiet" class="text-grey fsS">キャンセル</v-ons-button>
+                </p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <template id="report-complete-dialog.html">
+            <ons-dialog id="report-complete-dialog" cancelable>
+                <div class="p10">
+                    <p class="uk-text-center">運営者に報告しました。</p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+        <bottom-navi></bottom-navi>
+
+    </v-ons-page>
+</template>

@@ -1,0 +1,431 @@
+/*** @@@views/index.css@@@ ***/
+
+/* ========================================================================
+   余白リセット
+ ========================================================================== */
+
+#-user-index- p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ========================================================================
+   スライダーはみ出し分、hidden設定
+ ========================================================================== */
+
+#-user-index- .page__content {
+    overflow-x: hidden;
+}
+
+
+/* ========================================================================
+   コンテンツ関連スタイル
+ ========================================================================== */
+
+#-user-index- .contents_area {
+}
+
+#-user-index- .mermamamates-inner-wrap {
+  margin-bottom: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner-wrap {
+    background-color: #f4f4f2;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+#-user-index- .mermamamates-inner {
+  background-color: #fcfcf2;
+  padding: calc(4 * 16px) 0 calc(3 * 16px);
+}
+
+#-user-index- .mermamamates-inner h1 {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #606060;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: calc(3 * 16px);
+  display: none;
+}
+
+#-user-index- .mermamamates-inner .mermamamates-search-button {
+  max-width: 160px;
+  margin: 0 auto calc(4 * 16px) auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #606060;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background-color: #fff;
+  text-decoration: none;
+  border: solid 1px #606060;
+  border-radius: 8px;
+  padding: calc(0.5 * 16px) 0;
+  margin-bottom: calc(8 * 16px);
+  line-height: 17px;
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .mermamamates-search-button {
+    font-size: 12px;
+    padding: calc(0.4 * 16px) 0;
+    margin-bottom: calc(4 * 16px);
+  }
+}
+
+#-user-index- .mermamamates-inner .mermamamates-conrainer {
+  max-width: 860px;
+  margin: 60px auto 0;
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .mermamamates-conrainer {
+    /* max-width: 400px; */
+    margin: 0 auto 0;
+      padding-left: 25px;
+      padding-right: 25px;
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap {
+  max-width: 455px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap {
+    margin: 5px auto;
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap {
+  margin-bottom: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap {
+    margin-bottom: calc(1 * 16px);
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-left-block {
+  width: 38%;
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-left-block .profile-thumb-wrap {
+  max-width: 154px;
+  padding: 5px;
+  border: solid 3px #fbc2a1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: calc(1.5 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-left-block .profile-thumb-wrap {
+    border: solid 2px #fbc2a1;
+    margin-bottom: calc(1 * 16px);
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-left-block .profile-thumb-wrap .profile-thumb {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block {
+  width: 56%;
+  margin-left: auto;
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-name {
+  margin-bottom: calc(0.5 * 16px);
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-name p {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-name p {
+    font-size: 15px;
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-name p span {
+  font-size: 14px;
+  margin-left: .5em;
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-name p span {
+    font-size: 11px;
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-list {
+  margin: 0 0 calc(1 * 16px) 0;
+  /* padding: 0 0 calc(1 * 16px) 1em; */
+  padding: 0 0 calc(1 * 16px) 0;
+  list-style: none;
+  /* border-bottom: solid 1px #fbc2a1; */
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-list {
+    margin: 0 0 calc(0.5 * 16px) 0;
+    padding: 0 0 calc(0.5 * 16px) 1em;
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-list li {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: calc(0.25 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-list li {
+    font-size: 10px;
+  }
+}
+
+#-user-index- .mermamamates-inner .profile-wrap .profile-inner-wrap .profile-right-block .profile-list li:before {
+  display: block;
+  content: "・";
+  /* min-width: 7px;
+  width: 7px;
+  height: 11px; */
+  /* background-image: url("/img/mypage/icon_heading.png");
+  background-size: contain;
+  background-repeat: no-repeat; */
+  margin-right: calc(0.25 * 16px);
+}
+
+#-user-index- .mermamamates-inner .profile-thumb-chat-wrap {
+    position: relative;
+}
+
+#-user-index- .mermamamates-inner .profile-thumb-chat-wrap .profile-thumb-chat {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: block;
+  width: 20px;
+}
+
+@media (max-width: 768px) {
+  #-user-index- .mermamamates-inner .profile-thumb-chat-wrap .profile-thumb-chat {
+    min-width: 14px;
+    width: 14px;
+  }
+}
+
+.modal-mermamamates .page__background {
+    background-color: #fff;
+}
+
+.modal-mermamamates h2 {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #606060;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: calc(3 * 16px);
+  margin-top: calc(2 * 16px);
+}
+
+@media (max-width: 768px) {
+  .modal-mermamamates h2 {
+    font-size: 13px;
+  }
+}
+
+.modal-mermamamates .mermamamates-form-inner-wrap {
+    padding-left: 25px;
+    padding-right: 25px;
+    max-width: 364px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-mermamamates .mermamamates-form-inner-wrap .uk-form-controls .text-input {
+    margin-bottom: calc(0.25 * 16px);
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    background: #fff;
+    padding: 0 10px;
+    height: 40px;
+}
+
+.modal-mermamamates .mermamamates-form-inner-wrap .uk-form-controls .select-input {
+    margin-bottom: calc(0.25 * 16px);
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    height: 40px;
+}
+
+.modal-mermamamates .mermamamates-form-inner-wrap label {
+  position: relative;
+  color: #606060;
+  font-size: 15px;
+  font-weight: bold;
+  padding-top: 8px;
+  display: inline-block;
+}
+
+.modal-mermamamates .mermamamates-form-inner-wrap label span {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  color: #fff;
+  font-weight: normal;
+  background-color: #ff5500;
+  border-radius: 5px;
+  padding: 0.1em 0.7em;
+  margin-left: calc(1 * 16px);
+}
+
+@media (max-width: 768px) {
+  .modal-mermamamates .mermamamates-form-submit .uk-button-danger,
+  .modal-mermamamates .mermamamates-form-submit .uk-button-secondary {
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 0 calc(6 * 16px);
+  }
+  .modal-mermamamates .mermamamates-form-inner-wrap label {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+}
+
+#mermamamates-taste {
+  padding: 0 20px;
+}
+@media (max-width: 768px) {
+  #mermamamates-taste {
+    padding: 0 15px;
+  }
+}
+
+.mermamamates-taste-btns .active {
+  border: solid 3px #ff5500;
+}
+@media (max-width: 768px) {
+  .mermamamates-taste-btns .active {
+    border: solid 2px #ff5500;
+  }
+}
+
+.mermamamates-taste-btns label {
+  width: 45%;
+}
+
+@media (max-width: 768px) {
+  .mermamamates-taste-btns label {
+    width: 43%;
+  }
+}
+
+.mermamamates-taste-btns label div {
+  cursor: pointer;
+  width: 100%;
+}
+
+.mermamamates-taste-btns label div:hover {
+  opacity: 0.8;
+}
+
+.mermamamates-taste-btns [type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.mermamamates-taste-btns [type="checkbox"]:checked + div {
+  border: solid 3px #ff5500;
+}
+
+@media (max-width: 768px) {
+  .mermamamates-taste-btns [type="checkbox"]:checked + div {
+    border: solid 2px #ff5500;
+  }
+}
+
+.mermamamates-taste-btns {
+  padding: 0 calc(2 * 8px);
+}
+
+@media (max-width: 768px) {
+  .mermamamates-taste-btns {
+    padding: 0;
+  }
+}
+
+.mermamamates-taste-btns div {
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+  border-radius: 30px;
+  box-sizing: border-box;
+  border-color: transparent;
+  padding: calc(0.5 * 13px) 0;
+  margin-bottom: calc(1 * 8px);
+  border: solid 3px transparent;
+  width: 31.5%;
+}
+
+@media (max-width: 768px) {
+  .mermamamates-taste-btns div {
+    font-size: 12px;
+    border-radius: 12px;
+    padding: calc(0.4 * 16px) 0;
+    margin-bottom: calc(0.5 * 16px);
+    border: solid 2px transparent;
+  }
+}
+
+.modal-mermamamates .mermamamates-form-submit .uk-button-danger {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ff5500;
+  border-radius: 14px;
+  padding: 0 calc(6 * 16px);
+  line-height: 38px;
+}
+
+@media (max-width: 768px) {
+  .modal-mermamamates .mermamamates-form-submit .uk-button-danger,
+  .modal-mermamamates .mermamamates-form-submit .uk-button-secondary {
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 0 calc(6 * 16px);
+  }
+}
+
+@media (orientation: portrait) {
+    html[onsflag-iphonex-portrait] .toolbar:not(.toolbar--cover-content)+.page__background+.page__content .modal-mermamamates .page__content {
+        top: 0;
+    }
+}

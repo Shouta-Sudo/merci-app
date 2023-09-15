@@ -1,0 +1,82 @@
+<template id="comment">
+    <v-ons-page id="-post-comment-" @show="init()">
+
+        <!-- ヘッダー -->
+        <page-header></page-header>
+
+        <!-- コンテンツ -->
+        <div class="contents_area">
+
+            <div class="uk-container tweet-post-inner-wrap">
+
+                <div class="tweet-post-inner">
+
+                    <div class="tweet-post-content">
+
+                        <h1 v-if="form.comment_flag == 0">{{title1}}</h1>
+                        <h1 v-if="form.comment_flag == 1">{{title2}}</h1>
+
+                        <!-- <div class="back_btn_area">
+                            <v-ons-button @click="moveToPrev()" class="back_to_list"><i class="fas fa-chevron-left"></i> 戻る</v-ons-button>
+                        </div> -->
+
+                        <h4 class="uk-flex uk-flex-middle">コメント</h4>
+
+                        <div class="uk-flex uk-margin-bottom uk-width-1-1">
+                            <div v-if="form.comment_flag == 0" class="mr10px uk-text-nowrap">
+                                つぶやき:　
+                            </div>
+                            <div v-if="form.comment_flag == 1" class="mr10px uk-text-nowrap">
+                                コメント:　
+                            </div>
+                            <div class="uk-text-break uk-width-expand">
+                                {{view.tweet_contents}}
+                            </div>
+                        </div>
+
+                        <!-- コメント投稿 -->
+                        <div class="tweet-post-form uk-margin-medium-bottom">
+                            <div class="uk-flex uk-flex-middle uk-flex-wrap tweet-post-form-row">
+                                <textarea v-if="form.comment_flag == 0" class="textarea uk-width-1-1" v-model="form.comment_contents" :placeholder="page.fieldInfo.comment_contents.placeholder" rows="3" id="text-input"></textarea>
+                                <textarea v-if="form.comment_flag == 1" class="textarea uk-width-1-1" v-model="form.comment_contents" :placeholder="page.fieldInfo.re_comment_contents.placeholder" rows="3" id="text-input"></textarea>
+                                <p class="uk-width-1-1 mt10 error text-red" v-if="error.comment_contents">{{error.comment_contents}}</p>
+                                <div class="uk-width-1-1 uk-text-center uk-margin-small-top">
+                                    <v-ons-button v-if="form.comment_flag == 0" @click="showConfirmation()" id="check_contents" class="tweet-post-btn uk-text-nowrap">コメント投稿</v-ons-button>
+                                    <v-ons-button v-if="form.comment_flag == 1" @click="showConfirmation()" id="check_contents" class="tweet-post-btn uk-text-nowrap">返信する</v-ons-button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="back_btn_area">
+                            <v-ons-button @click="moveToPrev()" class="back_to_list"><i class="fas fa-chevron-left"></i> 戻る</v-ons-button>
+                        </div> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!--contents_area-->
+
+        <template id="comment-dialog.html">
+            <ons-dialog id="comment-dialog" cancelable>
+                <div class="p10 uk-text-center">
+                    <p v-if="form.comment_flag == 0" class="mb20 uk-text-center">コメントを投稿します。</p>
+                    <p v-if="form.comment_flag == 1" class="mb20 uk-text-center">返信を投稿します。</p>
+                    <p class="mb10">
+                        <v-ons-button @click="cancelcomment()" modifier="quiet" class="text-grey fsS">キャンセル</v-ons-button>
+                    </p>
+                    <p>
+                        <v-ons-button @click="comment()" class="ok_btn">OK</v-ons-button>
+                    </p>
+                </div>
+            </ons-dialog>
+        </template>
+
+        <!-- フッター -->
+        <page-footer></page-footer>
+        <bottom-navi></bottom-navi>
+
+    </v-ons-page>
+</template>

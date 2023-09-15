@@ -1,0 +1,87 @@
+<template id="user_message">
+	<v-ons-page id="-user_message-" @show="init()">
+
+		<!--ヘッダー-->
+		<page-header></page-header>
+
+		<!-- コンテンツ -->
+		<div class="contents_area">
+
+			<div class="mermamamessage-inner-wrap uk-container">
+
+				<div class="mermamamessage-inner">
+
+					<div class="back_btn_area">
+						<v-ons-button @click="moveToPrev()" class="back_to_list"><i class="fas fa-chevron-left"></i> 戻る</v-ons-button>
+					</div>
+
+					<h1>{{title}}</h1>
+
+					<div class="mermamamessage-form-inner-wrap">
+
+						<div ref="chatMessageArea" class="chat-message-area">
+
+							<div v-for="message in messages"
+									 :class="['chat-message-set',
+									 				(message.user_from_id != login_id)
+													 ? 'chat-message-left'
+													 : 'chat-message-right']">
+								<p class="chat-message-head">
+									<span class="name">{{message.send_nickname}}<span class="san">さん</span></span>
+									<span class="date">{{message.created_at}}</span>
+								</p>
+								<div class="uk-flex" :class="{ 'uk-flex-right': message.from_me, 'uk-flex-left': !message.from_me }">
+									<div v-if="message.user_from_id != login_id" class="chat-img">
+										<img :src="get_avator_url(user.user_profile.image_id, user.user_profile.kanri_user_flg)" alt="アバター画像">
+									</div>
+									<div>
+										<div v-show="message.message" class="chat-message-box">
+											<p class="host pre-wrap">{{message.message}}</p>
+										</div>
+										<div v-show="message.image_url" class="msg-img-area">
+											<img :src="message.image_url">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="chat-toukou-area uk-form-controls">
+							<div>
+								<textarea v-model="form_message" class="uk-textarea" rows="5" placeholder="メッセージを記入" name="message"></textarea>
+							</div>
+
+							<div class="uk-margin-small-top uk-margin-bottom">
+								<div class="uk-flex uk-flex-middle">
+									<v-ons-icon icon="fa-camera" class="select_image_icon"></v-ons-icon>
+									<div class="select_image" @click="select_image">
+										<span v-show="!form_image">画像を撮影/選択</span>
+										<span v-show="!!form_image">1件の画像を選択中</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="btn uk-flex uk-flex-middle uk-flex-center">
+								<v-ons-button @click="send_message" :disabled="!form_message && !form_image" name="submit_btn" value="1">送信</v-ons-button>
+							</div>
+						</div>
+
+						<div class="back_btn_area">
+							<v-ons-button @click="moveToPrev()" class="back_to_list"><i class="fas fa-chevron-left"></i> 戻る</v-ons-button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div><!--contents_area-->
+
+		<!-- フッター -->
+		<page-footer></page-footer>
+		<bottom-navi></bottom-navi>
+
+	</v-ons-page>
+</template>

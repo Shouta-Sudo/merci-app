@@ -1,0 +1,183 @@
+/*** @@@views/index.css@@@ ***/
+
+/* ========================================================================
+   余白リセット
+ ========================================================================== */
+
+#-post-index- p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ========================================================================
+   スライダーはみ出し分、hidden設定
+ ========================================================================== */
+
+#-post-index- .page__content {
+    overflow-x: hidden;
+}
+
+
+/* ========================================================================
+   コンテンツ関連スタイル
+ ========================================================================== */
+
+#-post-index- .contents_area {
+}
+
+#-post-index- .request-detail-com-inner {
+  margin: 0 auto calc(2 * 16px);
+
+}
+
+@media (max-width: 768px) {
+    #-post-index- .request-detail-com-inner {
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+#-post-index- .request-detail-com-inner .inner {
+    background-color: #fcfcf2;
+    border-radius: 10px;
+    padding: calc(4 * 16px) calc(2 * 16px) calc(6 * 16px);
+
+}
+
+@media (max-width: 768px) {
+    #-post-index- .request-detail-com-inner .inner {
+        padding: calc(2 * 16px) calc(0.5 * 16px) calc(2 * 16px);
+    }
+}
+
+#-post-index- .request-detail-com-inner h1 {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #606060;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-bottom: calc(2 * 16px);
+  margin-top: calc(1 * 16px);
+}
+
+@media (max-width: 768px) {
+  #-post-index- .request-detail-com-inner h1 {
+    font-size: 16px;
+    margin-bottom: calc(1 * 16px);
+    margin-top: calc(0.5 * 16px);
+  }
+}
+
+#-post-index- .request-detail-inner-content {
+    max-width: 662px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    #-post-index- .request-detail-inner-content {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #-post-index- .request-detail-com-inner .request-detail-inner-content .request-detail-avatar-name-wrap2 {
+        align-items: flex-start;
+    }
+}
+
+#-post-index- .request-detail-inner-content .request-detail-avatar {
+  min-width: 68px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: calc(1 * 16px);
+}
+
+#-post-index- .request-comment-text {
+  min-height: 70px;
+  flex-grow: 1;
+  font-size: 11px;
+  border: solid 1px #606060;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: calc(0.5 * 16px);
+}
+
+#-post-index- .request-comment-text p {
+  margin-bottom: calc(0.5 * 16px);
+}
+
+#-post-index- .request-comment-text p .button.button--quiet {
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 0;
+    border-radius: 0;
+}
+
+#-post-index- .request-comment-text .weekly-comment-name {
+  margin-top: auto;
+}
+
+#-post-index- .reply_ctrl {
+    padding: calc(0.5 * 16px);
+    border-bottom: solid 1px #fbc2a1;
+    line-height: 1;
+}
+
+#-post-index- .reply_ctrl {
+    padding: 0;
+    border-bottom: none;
+    line-height: 1;
+}
+
+#-post-index- .reply_ctrl .uk-flex > p {
+    margin-bottom: 0;
+}
+
+#-post-index- .reply_ctrl span {
+    margin-bottom: 0 !important;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 1;
+}
+
+#-post-index- .reply_ctrl .each_icon {
+    padding-right: 8px;
+    line-height: 1;
+}
+
+#-post-index- .reply_ctrl img {
+    width: 20px;
+    display: inline-block;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    #-post-index- .reply_ctrl img {
+        width: 16px;
+        line-height: 1;
+    }
+}
+
+/* ------------------------------------------------------------------------------
+  top　つぶやきスタイル
+-------------------------------------------------------------------------------*/
+.nickname {
+    font-size: 10px;
+    line-height: 1.2;
+    color: #606060;
+    overflow-wrap: break-word;
+    margin-top: 5px;
+    font-size: 11px;
+}
+
+.avatar-box {
+    width: 68px;
+    text-align: center;
+    margin-right: calc(1 * 16px);
+}
+

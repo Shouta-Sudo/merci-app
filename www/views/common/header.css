@@ -1,0 +1,320 @@
+/*** @@@views/header.css@@@ ***/
+
+.toolbar {
+    background-image: none;
+}
+
+.sp-header {
+    padding: calc(2 * 16px) 0 calc(1 * 16px);
+    background-color: #fcf7d9;
+    height: 98px;
+}
+
+.header-logo.d-sm-block {
+    display: block;
+}
+
+.header-logo {
+    order: 1;
+    width: 110px;
+    min-width: 72px;
+    margin: 0;
+}
+
+.login_header .header-logo {
+    width: 110px;
+    min-width: 60px;
+}
+
+.header-logo img {
+    width: 100%;
+}
+
+.header-user-menu.d-sm-flex {
+    display: flex;
+}
+
+.header-user-menu {
+    order: 2;
+    margin: 0 calc(1.25 * 16px) 0 auto;
+    margin-right: 0;
+}
+
+@media (max-width: 430px) {
+    .header-user-menu {
+        /* margin: 0 calc(1.25 * 16px) 0 calc(7 * 16px); */
+        margin-left: auto;
+    }
+    .login_header .header-user-menu {
+        margin: 0 calc(0.7 * 16px) 0 calc(1 * 16px);
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-user-menu {
+        margin: 0 calc(0.5 * 16px) 0 auto;
+    }
+}
+
+.header-user-menu .header-user-menu-single {
+    position: relative;
+    z-index: 0;
+    width: 46px;
+    height: 46px;
+    background-color: #fff;
+    border: solid 2px #fbc2a1;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: calc(0.25 * 16px);
+}
+
+@media (max-width: 320px) {
+    .header-user-menu .header-user-menu-single {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.header-user-menu .header-user-menu-single .header-user-menu-icon {
+    width: 26px;
+}
+
+.header-user-menu .header-user-menu-single:last-of-type {
+  margin-right: calc(1 * 16px);
+}
+
+@media (max-width: 768px) {
+  .header-user-menu .header-user-menu-single:last-of-type {
+    /* margin-right: 0; */
+  }
+}
+
+.header-user-menu .header-user-menu-single:last-of-type .header-user-menu-icon {
+  width: 25px;
+}
+
+@media (max-width: 768px) {
+  .header-user-menu .header-user-menu-single:last-of-type .header-user-menu-icon {
+    width: 18px;
+  }
+}
+
+.header-user-menu .header-user-menu-single .header-user-menu-text {
+  color: #fbc2a1;
+}
+
+@media (max-width: 768px) {
+  .header-user-menu .header-user-menu-single .header-user-menu-text {
+    font-size: 10px;
+  }
+}
+
+.header-user-menu .header-user-menu-single .header-user-menu-notice {
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  background-color: #ff5500;
+  border-radius: 50%;
+  min-width: 25px;
+  min-height: 25px;
+}
+
+@media (max-width: 768px) {
+  .header-user-menu .header-user-menu-single .header-user-menu-notice {
+    font-size: 10px;
+    min-width: 20px;
+    min-height: 20px;
+  }
+}
+
+.header-user-menu .header-user-menu-single.disabled {
+  pointer-events: none;
+}
+
+.header-user-menu .header-user-menu-login-wrap {
+  display: flex;
+	/* flex-direction: column; */
+	/* margin-right: calc(0.25 * 16px); */
+  /* margin-left: auto; */
+  /* width: 30%; */
+  /* display: block; */
+}
+
+.header-user-menu .header-user-menu-login-wrap .header-user-menu-register {
+	font-size: 12px;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 10px;
+	box-sizing: border-box;
+	border: solid 1px #ff5500;
+	background-color: #ff5500;
+	height: 36px;
+	width: 80px;
+	/* margin-bottom: calc(0.5 * 16px); */
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  margin-right: 12px;
+}
+
+@media (max-width: 768px) {
+	.header-user-menu .header-user-menu-login-wrap .header-user-menu-register {
+		border-radius: 5px;
+		font-size: 12px;
+
+		/* margin-bottom: calc(0.25 * 16px); */
+		margin-right: 12px;
+	}
+}
+
+@media (max-width: 320px) {
+	.header-user-menu .header-user-menu-login-wrap .header-user-menu-register {
+		width: 60px;
+	}
+}
+
+.header-user-menu .header-user-menu-login-wrap .header-user-menu-register.disabled {
+	pointer-events: none;
+}
+
+.header-user-menu .header-user-menu-login-wrap .header-user-menu-login {
+  font-size: 12px;
+  color: #ff5500;
+  font-weight: bold;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: solid 1px #ff5500;
+  background-color: #fff;
+  height: 36px;
+  width: 80px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .header-user-menu .header-user-menu-login-wrap .header-user-menu-login {
+    border-radius: 5px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-user-menu .header-user-menu-login-wrap .header-user-menu-login {
+    width: 60px;
+  }
+}
+
+.header-user-menu .header-user-menu-login-wrap .header-user-menu-login.disabled {
+  pointer-events: none;
+}
+
+.header-user-menu .header-user-menu-single .header-user-menu-text {
+  color: #fbc2a1;
+}
+
+.header-user-menu .header-user-menu-single .header-user-menu-text {
+    font-size: 10px;
+}
+
+.toolbar__left,
+.toolbar__title,
+.toolbar__right {
+    display: none;
+}
+
+.header-user-menu-single.toolbar-button {
+    padding: 0;
+}
+
+.header-menu {
+    order: 3;
+}
+
+.header-menu .toolbar-button {
+    padding: 0;
+}
+
+.toolbar > .uk-container {
+    width: 100%;
+    padding:calc(1 * 16px) 8px;
+}
+
+html[onsflag-iphonex-portrait] ons-splitter ons-splitter-side .page .page__content {
+    top: 44px;
+}
+
+ons-splitter ons-splitter-side .page .page__content {
+    background:none !important;
+}
+
+ons-splitter ons-splitter-side .page .page__background {
+    background-color: rgba(251, 194, 161, 0.9) !important;
+}
+
+ons-splitter ons-splitter-side .page .page__content .list {
+    background: none !important;
+}
+
+ons-splitter ons-splitter-side .page .page__content > .list > .list-item {
+    background: none !important;
+}
+
+ons-splitter ons-splitter-side .page .page__content .list > * {
+    background: none !important;
+}
+
+ons-splitter ons-splitter-side .page .page__content .list .list-item__center {
+    color: #fff;
+    background-image: none;
+}
+
+
+
+ons-splitter ons-splitter-side .page .page__content > .list > .list-item .list .notification {
+    font-size: 10px;
+    padding: 0 4px;
+    border-radius: 3px;
+}
+
+ons-splitter ons-splitter-side .page .page__content > .list > .list-item .expandable-content .ons-icon {
+    line-height: 1.8em;
+    padding: 5px 0 5px 5px;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.splitter_list {
+  background-color: rgba(251, 194, 161, 0.9) !important;
+  /* display: none; */
+	position: absolute;
+	right: 0;
+	top: 83px;
+	z-index: 2;
+	width: 162px;
+	list-style: none;
+	padding: calc(1 * 16px) calc(1 * 16px) calc(1 * 16px) calc(2 * 16px);
+	margin: 0;
+	border-radius: 0 0 0 30px;
+}
+
+.splitter_list ons-list-item .list-item__center {
+  font-size: 15px;
+	letter-spacing: 0.1em;
+	color: #fff;
+	text-decoration: none;
+  background-image: none
+}

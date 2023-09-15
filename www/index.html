@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy"
+					blob="img-src"
+					content="default-src * data: gap: content: cdvfile: blob: https://ssl.gstatic.com;
+									 style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval';">
+
+	<script src="components/loader.js"></script>
+	<link rel="stylesheet" href="components/loader.css">
+
+	<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.min.css">
+
+	<!-- ライブラリの読込順を変更する際は影響を考慮すること -->
+	<script src="lib/onsenui/js/onsenui.js"></script>
+	<script src="lib/vue/dist/vue.js"></script>
+	<script src="lib/vue-onsenui/dist/vue-onsenui.js"></script>
+	<script src="lib/jquery/js/jquery-3.5.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="lib/axios/dist/axios.js"></script>
+	<script src="lib/es6-promise/dist/es6-promise.auto.js"></script>
+
+	<script src="lib/crypto-js/crypto-js.js"></script>
+
+	<script src="js/common.js"></script>
+	<script src="appConst.js"></script>
+	<script src="app.js"></script>
+
+
+	<!-- TODO:必要内容をマージしてください -->
+	<link rel="stylesheet" href="css/onsen-css-components.css">
+	<link rel="stylesheet" href="css/theme.css">
+	<link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="app2.css">
+	<link rel="stylesheet" href="lib/jquery-ui/jquery-ui-1.12.1.min.css" />
+	<link rel="stylesheet" href="lib/slick/slick.css">
+	<link rel="stylesheet" href="lib/slick/slick-theme.css">
+	<link rel="stylesheet" href="lib/scroll-hint-master/css/scroll-hint.css">
+
+	<!--CSS読み込み後のライブラリの読み込み-->
+	<script src="lib/jquery-ui/jquery-ui-1.12.1.min.js"></script>
+	<script src="lib/slick/slick.min.js"></script>
+	<script src="lib/autosize-master/autosize.min.js"></script>
+	<script src="lib/scroll-hint-master/js/scroll-hint.min.js"></script>
+
+	<!-- 共通部品 -->
+	<script src="js/utilMessage.js"></script>	<!-- メッセージ表示系 -->
+	<script src="js/utilCamera.js"></script> <!-- カメラ・ファイルアクセス等 -->
+	<script src="js/utilLocalStorage.js"></script> <!-- localStorage関連 -->
+	<script src="js/utilTransition.js"></script> <!-- 画面遷移関連 -->
+	<script src="js/utilNotice.js"></script> <!-- 通知処理関連 -->
+	<script src="js/util.js"></script>
+	<script src="js/axios.js"></script>  <!-- axios通信用 -->
+
+	<!-- TODO:スタブデータ(APIと連携したら削除予定)  -->
+	<script src="stubData.js"></script>
+
+	<!-- 以下、各viewで使用するモジュール -->
+
+	<!-- コンポーネント -->
+	<link   rel = "stylesheet" href = "views/common/header.css">
+	<script src = "views/common/header.js"></script>
+	<link   rel = "stylesheet" href = "views/common/header2.css">
+	<script src = "views/common/header2.js"></script>
+	<link   rel = "stylesheet" href = "views/common/footer.css">
+	<script src = "views/common/footer.js"></script>
+	<script src = "views/common/bottomNavi.js"></script>
+	<link   rel = "stylesheet" href = "views/common/pager.css">
+	<script src = "views/common/pager.js"></script>
+
+	<!-- View定義 -->
+
+	<link rel="stylesheet" href="views/top.css">
+	<script src="views/top.js"></script>
+
+	<link rel="stylesheet" href="views/login.css">
+	<script src="views/login.js"></script>
+
+	<link rel="stylesheet" href="views/user/reset_password.css">
+	<script src="views/user/reset_password.js"></script>
+
+	<link rel="stylesheet" href="views/user/index.css">
+	<script src="views/user/index.js"></script>
+
+	<link rel="stylesheet" href="views/user/profile.css">
+	<script src="views/user/profile.js"></script>
+
+	<link rel="stylesheet" href="views/post/create.css">
+    <script src="views/post/create.js"></script>
+
+	<link rel="stylesheet" href="views/post/comment.css">
+    <script src="views/post/comment.js"></script>
+
+	<link rel="stylesheet" href="views/post/index.css">
+    <script src="views/post/index.js"></script>
+
+	<link rel="stylesheet" href="views/post/details.css">
+    <script src="views/post/details.js"></script>
+
+	<link rel="stylesheet" href="views/user/message.css">
+		<script src="views/user/message.js"></script>
+
+	<link rel="stylesheet" href="views/post/re_details.css">
+		<script src="views/post/re_details.js"></script>
+
+</head>
+
+<body>
+
+	<template id="main">
+		<!-- サイドバー -->
+		<v-ons-splitter :key="login_status">
+            <v-ons-splitter-side width="210px" collapse="" side="right" :open.sync="openSide">
+                <!-- ログイン時のリスト -->
+                <v-ons-list v-if="login_status">
+                    <v-ons-list class = "splitter_list">
+                        <!-- <v-ons-list-item @click="changePage('searchProducts')">商品を探す</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('deal_list')">出品・取引リスト</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('draft_list')">下書きリスト</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('purchase_list')">購入リスト</v-ons-list-item> -->
+                        <v-ons-list-item @click="changePage('point_list')">ポイントリスト</v-ons-list-item>
+                        <!-- <v-ons-list-item @click="changePage('sales_list')">売上リスト</v-ons-list-item> -->
+                        <!-- <v-ons-list-item @click="changePage('tweet_list')">ツイート一覧</v-ons-list-item> -->
+                        <v-ons-list-item @click="changePage('post_list')">投稿一覧</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('message_list')">メッセージ一覧</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('growth')">成長カレンダー</v-ons-list-item>
+
+                        <v-ons-list-item @click="changePage('follow')">フォローしている人</v-ons-list-item>
+
+                        <v-ons-list-item @click="changePage('regist_info')">登録情報の変更</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('password')">パスワード変更</v-ons-list-item>
+                        <v-ons-list-item @click="changePage('mail_address')">メールアドレス変更</v-ons-list-item>
+                        <v-ons-list-item v-if="login_status" @click="changePage('logout')">ログアウト</v-ons-list-item>
+                    </v-ons-list>
+                </v-ons-list>
+                <!-- 非ログイン時のリスト -->
+                <v-ons-list v-else>
+                    <v-ons-list-item>
+                        <div>
+                            <v-ons-list>
+                                <v-ons-list-item @click="changePage('searchProducts')">
+                                    商品を探す
+                                </v-ons-list-item>
+                        </v-ons-list>
+                        </div>
+                    </v-ons-list-item>
+                </v-ons-list>
+            </v-ons-splitter-side>
+
+
+			<v-ons-splitter-content>
+				<!-- <component :is="currentPage" :toggle-menu="() => openSide = !openSide"></component> -->
+				<v-ons-navigator swipeable id="navi"
+					:page-stack="pageStack"
+					@push-page="pageStack.push($event)"
+					@pop-page="pageStack.pop()"
+					@replace-page="pageStack.pop();pageStack.push($event)"
+					@reset-to-page="pageStack.splice(0);pageStack.push($event)">
+				</v-ons-navigator>
+			</v-ons-splitter-content>
+		</v-ons-splitter>
+		<!-- サイドバー END -->
+	</template>
+
+	<div id="app"></div>
+
+	<!-- ローディングマスク -->
+	<!-- <div id="loadingMask">
+		<div id="loader">
+			<p>Now Loading...</p>
+		</div>
+	</div> -->
+	<ons-modal id="loadingMask">
+			<div style="text-align: center">
+				<p>
+					<ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+				</p>
+			</div>
+	</ons-modal>
+
+	<!-- ページヘッダ/フッタ用テンプレート -->
+	<template id="pageHeader">
+		<v-ons-toolbar v-bind:class="[login_status ? 'login_header sp-header': 'sp-header']">
+			<div class="uk-container uk-flex uk-flex-middle">
+				<div class="header-logo d-sm-block">
+					<img src="img/logo.png" alt="Merci, Maman!" @click="changePage('top')">
+				</div>
+				<div class="uk-flex uk-flex-middle header-user-menu">
+					<!-- 非ログイン時 -->
+					<div v-if="!login_status" class="uk-flex header-user-menu-login-wrap">
+						<v-ons-toolbar-button class="uk-button uk-button-primary header-user-menu-register">
+							<div @click="changePage('new_entry')">会員登録</div>
+						</v-ons-toolbar-button>
+						<v-ons-toolbar-button class="uk-button uk-button-default header-user-menu-login">
+							<div @click="changePage('login')">ログイン</div>
+						</v-ons-toolbar-button>
+					</div>
+					<v-ons-toolbar-button v-if="login_status" class="header-user-menu-single">
+						<div class="header-user-menu-icon"><img src="img/icon_menu_05.png" alt="ユーザ" @click="changePage('mypage')"></div>
+					</v-ons-toolbar-button>
+					<v-ons-toolbar-button v-if="login_status" class="header-user-menu-single">
+						<div class="header-user-menu-icon"><img src="img/icon_menu_06.png" alt="お知らせ" @click="changePage('news')"></div>
+					</v-ons-toolbar-button>
+					<!-- <v-ons-toolbar-button class="header-user-menu-single">
+						<div class="header-user-menu-icon"><img src="img/icon_menu_07.png" alt="出品" @click="changePage('product_regist')"></div>
+						<div class="header-user-menu-text">出品</div>
+					</v-ons-toolbar-button> -->
+					<v-ons-toolbar-button v-if="login_status" class="header-user-menu-single">
+						<div class="header-user-menu-icon"><img src="img/icon_menu_09.png" alt="つぶやく" @click="changePage('tweet')"></div>
+						<div class="header-user-menu-text">つぶやく</div>
+					</v-ons-toolbar-button>
+				</div>
+				<div v-if="login_status" class="header-menu">
+					<v-ons-toolbar-button icon="ion-ios-menu, material: md-menu" @click="pushMenu"></v-ons-toolbar-button>
+				</div>
+			</div>
+		</v-ons-toolbar>
+	</template>
+	<template id="pageHeader2">
+		<div class="uk-container uk-flex uk-flex-middle">
+			<div class="header-searchbox-wrap">
+				<fieldset class="uk-fieldset header-searchbox">
+					<div class="uk-inline">
+						<span @click="moveToWeb('product/list/', `&like_name=${like_name}`)"
+									class="uk-form-icon uk-form-icon-flip header-icon-search">
+							<img src="img/icon_search.png" alt="アイテムを探す">
+						</span>
+						<input v-model="like_name" class="uk-input" type="text" name="like_name" placeholder="アイテムを探す">
+					</div>
+				</fieldset>
+			</div>
+			<div class="uk-flex uk-flex-middle header-main-menu">
+				<v-ons-button @click="changePage('used')" class="header-main-menu-single header-main-menu-01">
+					<div class="head-main-menu-icon"><img src="img/icon_menu_01.png" alt="既製品"></div>
+					<div class="head-main-menu-text">既製品</div>
+				</v-ons-button>
+				<v-ons-button @click="changePage('handmade')" class="header-main-menu-single header-main-menu-02">
+					<div class="head-main-menu-icon"><img src="img/icon_menu_02.png" alt="ハンドメイド"></div>
+					<div class="head-main-menu-text">ハンド<br class="">メイド</div>
+				</v-ons-button>
+				<v-ons-button @click="changePage('contents')" class="header-main-menu-single header-main-menu-03">
+					<div class="head-main-menu-icon"><img src="img/icon_menu_03.png" alt="コンテンツ"></div>
+					<div class="head-main-menu-text">コンテンツ</div>
+				</v-ons-button>
+				<v-ons-button @click="[login_status ? changePage('mermama_mate') : changePage('top')]" class="header-main-menu-single header-main-menu-04">
+					<div class="head-main-menu-icon"><img src="img/icon_menu_04.png" alt="メルママメイト"></div>
+					<div class="head-main-menu-text">メルママ<br class="">メイト</div>
+				</v-ons-button>
+				<v-ons-button @click="changePage('experience')" class="header-main-menu-single header-main-menu-05">
+					<div class="head-main-menu-icon"><img src="img/icon_menu_08.png" alt="みんなの体験記"></div>
+					<div class="head-main-menu-text">みんなの<br class="">体験記</div>
+				</v-ons-button>
+			</div>
+		</div>
+	</template>
+	<template id="pageFooter">
+		<footer>
+		    <div class="uk-container">
+				<div class="footer-area uk-flex-middle uk-flex uk-flex-center uk-margin-medium-bottom">
+					<div class="footer-sns">
+						<h2 class="uk-text-center">
+							<span class="d-sm-none">Follow us on</span>
+							<img src="img/footer_sns_sp.png" alt="Follow us on" class="d-sm-inline">
+						</h2>
+						<div class="uk-flex uk-flex-center footer-sns-icon-wrap">
+							<v-ons-button class="footer-sns-icon" modifier="quiet">
+								<img src="img/icon_twitter.png" alt="twitter" @click="changePage('twitter')">
+							</v-ons-button>
+							<v-ons-button class="footer-sns-icon" modifier="quiet">
+								<img src="img/icon_instagram.png" alt="instagram" @click="changePage('instagram')">
+							</v-ons-button>
+						</div>
+					</div>
+					<div class="footer-sns">
+						<h2 class="uk-text-center line_ttl">
+							<span class="">＼ Share ／</span>
+						</h2>
+						<div class="uk-flex uk-flex-center footer-sns-icon-wrap">
+							<v-ons-button class="footer-sns-icon" modifier="quiet">
+								<img src="img/icon_line.svg" alt="LINE" width="26" @click="changePage('line')">
+							</v-ons-button>
+						</div>
+					</div>
+				</div>
+		    </div>
+		    <div class="uk-text-right footer-totop">
+		        <div class="uk-container">
+		            <v-ons-button modifier="quiet">page top <img src="img/icon_top_arrow.png" alt="page top"></v-ons-button>
+		        </div>
+		    </div>
+
+		    <div class="uk-container footer-sitemap-wrap">
+		        <div class="uk-clearfix footer-sitemap">
+		            <ul>
+		                <li><v-ons-button modifier="quiet">Merci, Maman!について</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('company_profile')">運営会社概要</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('pressrelease')">プレスリリース</v-ons-button></li>
+		            </ul>
+		            <ul>
+		                <li><v-ons-button modifier="quiet">ガイド・お問い合わせ</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('guide')">使い方ガイド</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('faq')">よくあるご質問（Q&A）</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('advertisement')">広告出稿に関して</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('opinion')">ご意見・ご感想・ご要望</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('inquiry')">各種お問い合わせ</v-ons-button></li>
+		            </ul>
+		            <ul>
+		                <li><v-ons-button modifier="quiet">プライバシーと利用規約</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('privacy')">プライバシーポリシー</v-ons-button></li>
+		                <li><v-ons-button modifier="quiet" @click="changePage('terms')">利用規約</v-ons-button></li>
+		            </ul>
+		            <div class="uk-flex footer-copy-wrap">
+		                <div class="footer-copy-logo">
+		                    <img src="img/footer_logo.png" alt="Merci, Maman!">
+		                </div>
+		                <p class="footer-copy-text">&copy;Tomorrows, Inc.</p>
+		            </div>
+		        </div>
+		    </div>
+		    </div>
+		</footer>
+	</template>
+	<template id="bottomNavi">
+		<ul class="bottom-navi">
+			<li>
+				<a @click="changePage('top')"><img src="img/icon_bottomnavi_01.png" alt="ホーム"></a>
+			</li>
+			<li>
+				<a @click="changePage('user_event_list')"><img src="img/icon_bottomnavi_02.png" alt="イベント"></a>
+			</li>
+			<li>
+				<a @click="changePage('experience')"><img src="img/icon_bottomnavi_03.png" alt="掲示板"></a>
+			</li>
+			<li>
+				<a @click="changePage('review_product')"><img src="img/icon_bottomnavi_04.png" alt="ロコミ"></a>
+			</li>
+			<li v-if="login_status">
+				<a @click="changePage('mermama_mate')"><img src="img/icon_bottomnavi_05.png" alt="ママ友探す"></a>
+			</li>
+			<li v-if="!login_status">
+				<a @click="changePage('login')"><img src="img/icon_bottomnavi_05.png" alt="ママ友探す"></a>
+			</li>
+		</ul>
+	</template>
+
+</body>
+
+<script>
+	window.onload = app.init;
+    document.addEventListener("deviceready", onDeviceReady, false);
+    /*ons.enableAutoStatusBarFill();*/
+
+    function onDeviceReady() {
+
+		ons.disableAutoStatusBarFill()
+
+        if (typeof FirebasePlugin !== 'undefined'){
+            // プッシュ通知のパーミッションをリクエスト
+            FirebasePlugin.grantPermission(function (hasPermission) {
+                console.log("Permission was " + (hasPermission ? "granted" : "denied"));
+            });
+
+            // Get notified when the user opens a notification
+            window.FirebasePlugin.onMessageReceived(function (message) {
+                //alert(JSON.stringify(message));
+
+                app.handleNotice(message);
+            }, function (error) {
+                console.error(error);
+            });
+
+            // トークンの更新処理
+            window.FirebasePlugin.onTokenRefresh(function (token) {
+                app.notice.updateToken(token);
+            }, function (error) {
+                console.error(error);
+            });
+    	}
+    }
+</script>
+<!-- vue固有の定義 -->
+<script src="appVue.js"></script>
+</html>
